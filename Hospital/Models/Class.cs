@@ -8,5 +8,6 @@ namespace Hospital.Models
     public class Class
     {
         public string ruchika;
+        public string a;
     }
 }
