@@ -13,5 +13,7 @@ namespace Hospital.Modules.StaffManagement.Models
         public string Topic { get; set; }
         public string Description { get; set; }
 
+        //comments
+
     }
 }
