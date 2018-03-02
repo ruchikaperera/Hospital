@@ -6,28 +6,31 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Hospital.Models;
-using Hospital.Modules.StaffManagement.Models;
+using Hospital.Modules.Doctors_Profile.Models;
 
-namespace Hospital.Modules.StaffManagement.Controllers
+namespace Hospital.Modules.Doctors_Profile.Controllers
 {
-    public class LogInDetailsController : Controller
+    public class DoctorsLoginController : Controller
     {
-
-        public static string UserName = "Ruchika Perera";
         private readonly HospitalContext _context;
+        public static int no;
 
-        public LogInDetailsController(HospitalContext context)
+        public DoctorsLoginController(HospitalContext context)
         {
             _context = context;
         }
 
-        // GET: LogInDetails
-        public async Task<IActionResult> Index()
+        // GET: DoctorsLogin
+        public IActionResult Index()
         {
-            return View(await _context.LogInDetails.ToListAsync());
+            int No = Get_PendingLabReportsCount();
+            ViewBag.no = No;
+            //return View(await _context.DoctorsLoginModel.ToListAsync());
+            return View("zz");
+
         }
 
-        // GET: LogInDetails/Details/5
+        // GET: DoctorsLogin/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -35,39 +38,39 @@ namespace Hospital.Modules.StaffManagement.Controllers
                 return NotFound();
             }
 
-            var logInDetails = await _context.LogInDetails
+            var doctorsLoginModel = await _context.DoctorsLoginModel
                 .SingleOrDefaultAsync(m => m.Id == id);
-            if (logInDetails == null)
+            if (doctorsLoginModel == null)
             {
                 return NotFound();
             }
 
-            return View(logInDetails);
+            return View(doctorsLoginModel);
         }
 
-        // GET: LogInDetails/Create
+        // GET: DoctorsLogin/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: LogInDetails/Create
+        // POST: DoctorsLogin/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,UserName,Password,Position")] LogInDetails logInDetails)
+        public async Task<IActionResult> Create([Bind("Id,userName,password")] DoctorsLoginModel doctorsLoginModel)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(logInDetails);
+                _context.Add(doctorsLoginModel);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(logInDetails);
+            return View(doctorsLoginModel);
         }
 
-        // GET: LogInDetails/Edit/5
+        // GET: DoctorsLogin/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -75,22 +78,22 @@ namespace Hospital.Modules.StaffManagement.Controllers
                 return NotFound();
             }
 
-            var logInDetails = await _context.LogInDetails.SingleOrDefaultAsync(m => m.Id == id);
-            if (logInDetails == null)
+            var doctorsLoginModel = await _context.DoctorsLoginModel.SingleOrDefaultAsync(m => m.Id == id);
+            if (doctorsLoginModel == null)
             {
                 return NotFound();
             }
-            return View(logInDetails);
+            return View(doctorsLoginModel);
         }
 
-        // POST: LogInDetails/Edit/5
+        // POST: DoctorsLogin/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,UserName,Password,Position")] LogInDetails logInDetails)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,userName,password")] DoctorsLoginModel doctorsLoginModel)
         {
-            if (id != logInDetails.Id)
+            if (id != doctorsLoginModel.Id)
             {
                 return NotFound();
             }
@@ -99,12 +102,12 @@ namespace Hospital.Modules.StaffManagement.Controllers
             {
                 try
                 {
-                    _context.Update(logInDetails);
+                    _context.Update(doctorsLoginModel);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!LogInDetailsExists(logInDetails.Id))
+                    if (!DoctorsLoginModelExists(doctorsLoginModel.Id))
                     {
                         return NotFound();
                     }
@@ -115,10 +118,10 @@ namespace Hospital.Modules.StaffManagement.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(logInDetails);
+            return View(doctorsLoginModel);
         }
 
-        // GET: LogInDetails/Delete/5
+        // GET: DoctorsLogin/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -126,30 +129,38 @@ namespace Hospital.Modules.StaffManagement.Controllers
                 return NotFound();
             }
 
-            var logInDetails = await _context.LogInDetails
+            var doctorsLoginModel = await _context.DoctorsLoginModel
                 .SingleOrDefaultAsync(m => m.Id == id);
-            if (logInDetails == null)
+            if (doctorsLoginModel == null)
             {
                 return NotFound();
             }
 
-            return View(logInDetails);
+            return View(doctorsLoginModel);
         }
 
-        // POST: LogInDetails/Delete/5
+        // POST: DoctorsLogin/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var logInDetails = await _context.LogInDetails.SingleOrDefaultAsync(m => m.Id == id);
-            _context.LogInDetails.Remove(logInDetails);
+            var doctorsLoginModel = await _context.DoctorsLoginModel.SingleOrDefaultAsync(m => m.Id == id);
+            _context.DoctorsLoginModel.Remove(doctorsLoginModel);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool LogInDetailsExists(int id)
+        private bool DoctorsLoginModelExists(int id)
         {
-            return _context.LogInDetails.Any(e => e.Id == id);
+            return _context.DoctorsLoginModel.Any(e => e.Id == id);
+        }
+
+        public int Get_PendingLabReportsCount()
+        {
+            string status = "Pending";
+            //no = _context.LabReportRequest.Count(s => s.LabStatus.Equals(status));
+            return 4;
+
         }
     }
 }

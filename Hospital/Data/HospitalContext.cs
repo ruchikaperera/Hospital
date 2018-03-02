@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Hospital.Modules.Doctors_Profile.Models;
 using Hospital.Modules.StaffManagement.Models;
+using Hospital.Modules.LabManagement.Models;
 
 namespace Hospital.Models
 {
@@ -22,5 +23,11 @@ namespace Hospital.Models
         public DbSet<Hospital.Modules.StaffManagement.Models.LogInDetails> LogInDetails { get; set; }
 
         public DbSet<Hospital.Modules.Doctors_Profile.Models.RequestFacility> RequestFacility { get; set; }
+
+        public DbSet<Hospital.Modules.StaffManagement.Models.EditProfile> EditProfile { get; set; }
+
+        public DbSet<Hospital.Modules.Doctors_Profile.Models.DoctorsLoginModel> DoctorsLoginModel { get; set; }
+
+        public DbSet<Hospital.Modules.LabManagement.Models.LabLogInModel> LabLogInModel { get; set; }
     }
 }

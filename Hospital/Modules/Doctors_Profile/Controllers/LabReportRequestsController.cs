@@ -2,121 +2,157 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Hospital.Models;
 using Hospital.Modules.Doctors_Profile.Models;
+using Hospital.Modules.StaffManagement.Controllers;
 
 namespace Hospital.Modules.Doctors_Profile.Controllers
 {
-    [Produces("application/json")]
-    [Route("api/LabReportRequests")]
     public class LabReportRequestsController : Controller
     {
         private readonly HospitalContext _context;
 
+        public static int no;
         public LabReportRequestsController(HospitalContext context)
         {
             _context = context;
         }
 
-        // GET: api/LabReportRequests
-        [HttpGet]
-        public IEnumerable<LabReportRequest> GetLabReportRequest()
+        // GET: LabReportRequests
+        public async Task<IActionResult> Index()
         {
-            return _context.LabReportRequest;
+            return View(await _context.LabReportRequest.ToListAsync());
+
         }
 
-        // GET: api/LabReportRequests/5
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetLabReportRequest([FromRoute] int id)
+        // GET: LabReportRequests/Details/5
+        public async Task<IActionResult> Details(int? id)
         {
-            if (!ModelState.IsValid)
+            if (id == null)
             {
-                return BadRequest(ModelState);
+                return NotFound();
             }
 
-            var labReportRequest = await _context.LabReportRequest.SingleOrDefaultAsync(m => m.Id == id);
-
+            var labReportRequest = await _context.LabReportRequest
+                .SingleOrDefaultAsync(m => m.Id == id);
             if (labReportRequest == null)
             {
                 return NotFound();
             }
 
-            return Ok(labReportRequest);
+            return View(labReportRequest);
         }
 
-        // PUT: api/LabReportRequests/5
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutLabReportRequest([FromRoute] int id, [FromBody] LabReportRequest labReportRequest)
+        // GET: LabReportRequests/Create
+        public IActionResult Create()
         {
-            if (!ModelState.IsValid)
+            string username = LogInDetailsController.UserName;
+            ViewBag.message = username;
+            return View();
+        }
+
+        // POST: LabReportRequests/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("Id,nicNo,patientName,DoctorName,LabStatus,LabType,DoctorStatus,date,labNo,SpecialistName,description")] LabReportRequest labReportRequest)
+        {
+
+            if (ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                _context.Add(labReportRequest);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(labReportRequest);
+        }
+
+        // GET: LabReportRequests/Edit/5
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
             }
 
+            var labReportRequest = await _context.LabReportRequest.SingleOrDefaultAsync(m => m.Id == id);
+            if (labReportRequest == null)
+            {
+                return NotFound();
+            }
+            return View(labReportRequest);
+        }
+
+        // POST: LabReportRequests/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, [Bind("Id,nicNo,patientName,DoctorName,LabStatus,LabType,DoctorStatus,date,labNo,SpecialistName,description")] LabReportRequest labReportRequest)
+        {
             if (id != labReportRequest.Id)
             {
-                return BadRequest();
+                return NotFound();
             }
 
-            _context.Entry(labReportRequest).State = EntityState.Modified;
-
-            try
+            if (ModelState.IsValid)
             {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!LabReportRequestExists(id))
+                try
                 {
-                    return NotFound();
+                    _context.Update(labReportRequest);
+                    await _context.SaveChangesAsync();
                 }
-                else
+                catch (DbUpdateConcurrencyException)
                 {
-                    throw;
+                    if (!LabReportRequestExists(labReportRequest.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
                 }
+                return RedirectToAction(nameof(Index));
             }
-
-            return NoContent();
+            return View(labReportRequest);
         }
 
-        // POST: api/LabReportRequests
-        [HttpPost]
-        public async Task<IActionResult> PostLabReportRequest([FromBody] LabReportRequest labReportRequest)
+        // GET: LabReportRequests/Delete/5
+        public async Task<IActionResult> Delete(int? id)
         {
-            if (!ModelState.IsValid)
+            if (id == null)
             {
-                return BadRequest(ModelState);
+                return NotFound();
             }
 
-            _context.LabReportRequest.Add(labReportRequest);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetLabReportRequest", new { id = labReportRequest.Id }, labReportRequest);
-        }
-
-        // DELETE: api/LabReportRequests/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteLabReportRequest([FromRoute] int id)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            var labReportRequest = await _context.LabReportRequest.SingleOrDefaultAsync(m => m.Id == id);
+            var labReportRequest = await _context.LabReportRequest
+                .SingleOrDefaultAsync(m => m.Id == id);
             if (labReportRequest == null)
             {
                 return NotFound();
             }
 
+            return View(labReportRequest);
+        }
+
+        // POST: LabReportRequests/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var labReportRequest = await _context.LabReportRequest.SingleOrDefaultAsync(m => m.Id == id);
             _context.LabReportRequest.Remove(labReportRequest);
             await _context.SaveChangesAsync();
-
-            return Ok(labReportRequest);
+            return RedirectToAction(nameof(Index));
         }
+
+       
+       
 
         private bool LabReportRequestExists(int id)
         {

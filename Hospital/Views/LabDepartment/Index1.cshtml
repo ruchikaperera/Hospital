@@ -1,0 +1,65 @@
+﻿
+@{
+    Layout = "/Views/Shared/LabDepartment.cshtml"; ;
+}
+
+<!DOCTYPE html>
+<style>
+ 
+</style>
+<html>
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    dhdth
+
+    <canvas id="myChart">
+
+        <script>
+
+
+            var a = @(Html.Raw(ViewBag.a));
+            var b = @(Html.Raw(ViewBag.b));
+            var c = @(Html.Raw(ViewBag.c));
+
+
+            var ctx = document.getElementById('myChart').getContext('2d');
+            var chart = new Chart(ctx, {
+                // The type of chart we want to create
+                type: 'line',
+
+                // The data for our dataset
+                data: {
+                    labels: ["January", "February", "March", "April", "May", "June", "July"],
+                    datasets: [{
+                        label: "My First dataset",
+                        backgroundColor: 'rgb(255, 99, 132)',
+                        borderColor: 'rgb(255, 99, 132)',
+                        data: [a, b, c, 2, 20, 30, 45],
+                    }]
+                },
+
+                // Configuration options go here
+                options: {}
+            });
+
+
+
+
+        </script>
+
+       
+
+
+    </canvas>
+
+</body>
+</html>
+
+
+

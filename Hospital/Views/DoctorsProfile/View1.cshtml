@@ -1,0 +1,97 @@
+﻿@model IEnumerable<Hospital.Modules.Doctors_Profile.Models.LabReportRequest>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>View1</title>
+</head>
+<body>
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.nicNo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.patientName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DoctorName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LabStatus)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LabType)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DoctorStatus)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.date)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.labNo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SpecialistName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.description)
+                </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.nicNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.patientName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DoctorName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LabStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LabType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DoctorStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.labNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SpecialistName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.description)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</body>
+</html>

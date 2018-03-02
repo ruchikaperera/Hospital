@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Hospital.Models
+namespace Hospital.Modules.StaffManagement.Models
 {
-    public class Class
+    public  class AccountRecovery
     {
-        public string ruchika;
-        public string perera;
+
     }
 }

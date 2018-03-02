@@ -1,0 +1,109 @@
+﻿@model IEnumerable<Hospital.Modules.Doctors_Profile.Models.LabReportRequest>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/a.cshtml";
+}
+
+
+
+<p>
+    <h3><b>Report Details</b></h3>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <b>@Html.DisplayNameFor(model => model.Id)</b>
+            </th>
+            <th>
+                <b>@Html.DisplayNameFor(model => model.nicNo)</b>
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.patientName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DoctorName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LabStatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LabType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DoctorStatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.labNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SpecialistName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.description)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                <br />
+                <b>@Html.DisplayFor(modelItem => item.Id)</b>
+            </td>
+            <td>
+                <br />
+                <b>@Html.DisplayFor(modelItem => item.nicNo)</b>
+
+            </td>
+            <td>
+                <br />
+                @Html.DisplayFor(modelItem => item.patientName)
+            </td>
+            <td>
+                <br />
+                @Html.DisplayFor(modelItem => item.DoctorName)
+            </td>
+            <td>
+                <br />
+                @Html.DisplayFor(modelItem => item.LabStatus)
+            </td>
+            <td>
+                <br />
+                @Html.DisplayFor(modelItem => item.LabType)
+            </td>
+            <td>
+                <br />
+                @Html.DisplayFor(modelItem => item.DoctorStatus)
+            </td>
+            <td>
+                <br />
+                @Html.DisplayFor(modelItem => item.date)
+            </td>
+            <td>
+                <br />
+                @Html.DisplayFor(modelItem => item.labNo)
+            </td>
+            <td>
+                <br />
+                @Html.DisplayFor(modelItem => item.SpecialistName)
+            </td>
+            <td>
+                <br />
+                @Html.DisplayFor(modelItem => item.description)
+            </td>
+            <td>
+                <br />
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

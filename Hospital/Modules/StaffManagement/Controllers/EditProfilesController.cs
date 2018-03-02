@@ -10,24 +10,22 @@ using Hospital.Modules.StaffManagement.Models;
 
 namespace Hospital.Modules.StaffManagement.Controllers
 {
-    public class LogInDetailsController : Controller
+    public class EditProfilesController : Controller
     {
-
-        public static string UserName = "Ruchika Perera";
         private readonly HospitalContext _context;
 
-        public LogInDetailsController(HospitalContext context)
+        public EditProfilesController(HospitalContext context)
         {
             _context = context;
         }
 
-        // GET: LogInDetails
+        // GET: EditProfiles
         public async Task<IActionResult> Index()
         {
-            return View(await _context.LogInDetails.ToListAsync());
+            return View(await _context.EditProfile.ToListAsync());
         }
 
-        // GET: LogInDetails/Details/5
+        // GET: EditProfiles/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -35,39 +33,39 @@ namespace Hospital.Modules.StaffManagement.Controllers
                 return NotFound();
             }
 
-            var logInDetails = await _context.LogInDetails
+            var editProfile = await _context.EditProfile
                 .SingleOrDefaultAsync(m => m.Id == id);
-            if (logInDetails == null)
+            if (editProfile == null)
             {
                 return NotFound();
             }
 
-            return View(logInDetails);
+            return View(editProfile);
         }
 
-        // GET: LogInDetails/Create
+        // GET: EditProfiles/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: LogInDetails/Create
+        // POST: EditProfiles/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,UserName,Password,Position")] LogInDetails logInDetails)
+        public async Task<IActionResult> Create([Bind("Id,UserName,Password")] EditProfile editProfile)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(logInDetails);
+                _context.Add(editProfile);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(logInDetails);
+            return View(editProfile);
         }
 
-        // GET: LogInDetails/Edit/5
+        // GET: EditProfiles/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -75,22 +73,22 @@ namespace Hospital.Modules.StaffManagement.Controllers
                 return NotFound();
             }
 
-            var logInDetails = await _context.LogInDetails.SingleOrDefaultAsync(m => m.Id == id);
-            if (logInDetails == null)
+            var editProfile = await _context.EditProfile.SingleOrDefaultAsync(m => m.Id == id);
+            if (editProfile == null)
             {
                 return NotFound();
             }
-            return View(logInDetails);
+            return View(editProfile);
         }
 
-        // POST: LogInDetails/Edit/5
+        // POST: EditProfiles/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,UserName,Password,Position")] LogInDetails logInDetails)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,UserName,Password")] EditProfile editProfile)
         {
-            if (id != logInDetails.Id)
+            if (id != editProfile.Id)
             {
                 return NotFound();
             }
@@ -99,12 +97,12 @@ namespace Hospital.Modules.StaffManagement.Controllers
             {
                 try
                 {
-                    _context.Update(logInDetails);
+                    _context.Update(editProfile);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!LogInDetailsExists(logInDetails.Id))
+                    if (!EditProfileExists(editProfile.Id))
                     {
                         return NotFound();
                     }
@@ -115,10 +113,10 @@ namespace Hospital.Modules.StaffManagement.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(logInDetails);
+            return View(editProfile);
         }
 
-        // GET: LogInDetails/Delete/5
+        // GET: EditProfiles/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -126,30 +124,30 @@ namespace Hospital.Modules.StaffManagement.Controllers
                 return NotFound();
             }
 
-            var logInDetails = await _context.LogInDetails
+            var editProfile = await _context.EditProfile
                 .SingleOrDefaultAsync(m => m.Id == id);
-            if (logInDetails == null)
+            if (editProfile == null)
             {
                 return NotFound();
             }
 
-            return View(logInDetails);
+            return View(editProfile);
         }
 
-        // POST: LogInDetails/Delete/5
+        // POST: EditProfiles/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var logInDetails = await _context.LogInDetails.SingleOrDefaultAsync(m => m.Id == id);
-            _context.LogInDetails.Remove(logInDetails);
+            var editProfile = await _context.EditProfile.SingleOrDefaultAsync(m => m.Id == id);
+            _context.EditProfile.Remove(editProfile);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool LogInDetailsExists(int id)
+        private bool EditProfileExists(int id)
         {
-            return _context.LogInDetails.Any(e => e.Id == id);
+            return _context.EditProfile.Any(e => e.Id == id);
         }
     }
 }
