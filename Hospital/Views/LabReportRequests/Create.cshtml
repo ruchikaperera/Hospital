@@ -41,12 +41,12 @@
             </div>
             <div class="form-group">
                 <label asp-for="DoctorName" class="control-label"></label>
-                <input asp-for="DoctorName" class="form-control" />
+                <input asp-for="DoctorName" value="@ViewBag.userName" ReadOnly="readonly" class="form-control" />
                 <span asp-validation-for="DoctorName" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="LabStatus" class="control-label"></label>
-                <input asp-for="LabStatus" class="form-control" />
+                <input asp-for="LabStatus" value="Pending" ReadOnly="readonly" class="form-control" />
                 <span asp-validation-for="LabStatus" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -80,9 +80,15 @@
                 <input asp-for="SpecialistName" value="Not Mentioned" class="form-control" />
                 <span asp-validation-for="SpecialistName" class="text-danger"></span>
             </div>
+
+            <div class="form-group">
+                <label asp-for="LabReport" class="control-label"></label>
+                <input asp-for="LabReport"  ReadOnly="readonly" class="form-control" />
+                <span asp-validation-for="LabReport" class="text-danger"></span>
+            </div>
             <div class="form-group">
                 <label asp-for="description" class="control-label"></label>
-                <input asp-for="description" value="Pending" class="form-control" />
+                <input asp-for="description" value="Pending" ReadOnly="readonly" class="form-control" />
                 <span asp-validation-for="description" class="text-danger"></span>
             </div>
 

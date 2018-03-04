@@ -2,7 +2,7 @@
 
 @{
     ViewData["Title"] = "Details";
-    Layout = "~/Views/Shared/a.cshtml";
+    Layout = "~/Views/Shared/LabDepartment.cshtml";
 }
 
 <h2>Details</h2>
@@ -64,6 +64,12 @@
         </dt>
         <dd>
             @Html.DisplayFor(model => model.SpecialistName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LabReport)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LabReport)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.description)

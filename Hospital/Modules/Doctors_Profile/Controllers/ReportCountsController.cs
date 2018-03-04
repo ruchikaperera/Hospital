@@ -7,28 +7,25 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Hospital.Models;
 using Hospital.Modules.Doctors_Profile.Models;
-using Hospital.Modules.StaffManagement.Controllers;
 
 namespace Hospital.Modules.Doctors_Profile.Controllers
 {
-    public class LabReportRequestsController : Controller
+    public class ReportCountsController : Controller
     {
         private readonly HospitalContext _context;
 
-        public static int no;
-        public LabReportRequestsController(HospitalContext context)
+        public ReportCountsController(HospitalContext context)
         {
             _context = context;
         }
 
-        // GET: LabReportRequests
+        // GET: ReportCounts
         public async Task<IActionResult> Index()
         {
-            return View(await _context.LabReportRequest.ToListAsync());
-
+            return View(await _context.ReportCount.ToListAsync());
         }
 
-        // GET: LabReportRequests/Details/5
+        // GET: ReportCounts/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -36,43 +33,39 @@ namespace Hospital.Modules.Doctors_Profile.Controllers
                 return NotFound();
             }
 
-            var labReportRequest = await _context.LabReportRequest
+            var reportCount = await _context.ReportCount
                 .SingleOrDefaultAsync(m => m.Id == id);
-            if (labReportRequest == null)
+            if (reportCount == null)
             {
                 return NotFound();
             }
 
-            return View(labReportRequest);
+            return View(reportCount);
         }
 
-        // GET: LabReportRequests/Create
+        // GET: ReportCounts/Create
         public IActionResult Create()
         {
-            string username = LogInDetailsController.UserName;
-            username = "Ruchika Perera";
-            ViewBag.username = username;
             return View();
         }
 
-        // POST: LabReportRequests/Create
+        // POST: ReportCounts/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,nicNo,patientName,DoctorName,LabStatus,LabType,DoctorStatus,LabReport,date,labNo,SpecialistName,description")] LabReportRequest labReportRequest)
+        public async Task<IActionResult> Create([Bind("Id,Count")] ReportCount reportCount)
         {
-            labReportRequest.LabStatus = "Pending";
             if (ModelState.IsValid)
             {
-                _context.Add(labReportRequest);
+                _context.Add(reportCount);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+               // return RedirectToAction(nameof(Index));
             }
-            return View(labReportRequest);
+            return View(reportCount);
         }
 
-        // GET: LabReportRequests/Edit/5
+        // GET: ReportCounts/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -80,22 +73,22 @@ namespace Hospital.Modules.Doctors_Profile.Controllers
                 return NotFound();
             }
 
-            var labReportRequest = await _context.LabReportRequest.SingleOrDefaultAsync(m => m.Id == id);
-            if (labReportRequest == null)
+            var reportCount = await _context.ReportCount.SingleOrDefaultAsync(m => m.Id == id);
+            if (reportCount == null)
             {
                 return NotFound();
             }
-            return View(labReportRequest);
+            return View(reportCount);
         }
 
-        // POST: LabReportRequests/Edit/5
+        // POST: ReportCounts/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,nicNo,patientName,DoctorName,LabStatus,LabType,DoctorStatus,LabReport,date,labNo,SpecialistName,description")] LabReportRequest labReportRequest)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Count")] ReportCount reportCount)
         {
-            if (id != labReportRequest.Id)
+            if (id != reportCount.Id)
             {
                 return NotFound();
             }
@@ -104,12 +97,12 @@ namespace Hospital.Modules.Doctors_Profile.Controllers
             {
                 try
                 {
-                    _context.Update(labReportRequest);
+                    _context.Update(reportCount);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!LabReportRequestExists(labReportRequest.Id))
+                    if (!ReportCountExists(reportCount.Id))
                     {
                         return NotFound();
                     }
@@ -120,46 +113,59 @@ namespace Hospital.Modules.Doctors_Profile.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(labReportRequest);
+            return View(reportCount);
         }
 
-        // GET: LabReportRequests/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ResetReportCount(int id, [Bind("Id,Count")] ReportCount reportCount)
         {
-            if (id == null)
+            reportCount.Count = 0;
+            if (id != reportCount.Id)
             {
                 return NotFound();
             }
 
-            var labReportRequest = await _context.LabReportRequest
-                .SingleOrDefaultAsync(m => m.Id == id);
-            if (labReportRequest == null)
+            if (ModelState.IsValid)
             {
-                return NotFound();
+                try
+                {
+                    _context.Update(reportCount);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!ReportCountExists(reportCount.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
             }
-
-            return View(labReportRequest);
+            return View(reportCount);
         }
 
-        // POST: LabReportRequests/Delete/5
+       
+
+        // POST: ReportCounts/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var labReportRequest = await _context.LabReportRequest.SingleOrDefaultAsync(m => m.Id == id);
-            _context.LabReportRequest.Remove(labReportRequest);
+            var reportCount = await _context.ReportCount.SingleOrDefaultAsync(m => m.Id == id);
+            _context.ReportCount.Remove(reportCount);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-       
-       
-
-        private bool LabReportRequestExists(int id)
+        private bool ReportCountExists(int id)
         {
-            return _context.LabReportRequest.Any(e => e.Id == id);
+            return _context.ReportCount.Any(e => e.Id == id);
         }
-
-       
     }
 }

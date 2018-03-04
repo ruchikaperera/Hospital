@@ -11,9 +11,10 @@ using System;
 namespace Hospital.Migrations
 {
     [DbContext(typeof(HospitalContext))]
-    partial class HospitalContextModelSnapshot : ModelSnapshot
+    [Migration("20180303053952_Initial2")]
+    partial class Initial2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -44,8 +45,6 @@ namespace Hospital.Migrations
 
                     b.Property<string>("DoctorStatus");
 
-                    b.Property<string>("LabReport");
-
                     b.Property<string>("LabStatus");
 
                     b.Property<string>("LabType")
@@ -67,18 +66,6 @@ namespace Hospital.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("LabReportRequest");
-                });
-
-            modelBuilder.Entity("Hospital.Modules.Doctors_Profile.Models.ReportCount", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("Count");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ReportCount");
                 });
 
             modelBuilder.Entity("Hospital.Modules.Doctors_Profile.Models.RequestFacility", b =>

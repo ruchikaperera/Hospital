@@ -29,5 +29,7 @@ namespace Hospital.Models
         public DbSet<Hospital.Modules.Doctors_Profile.Models.DoctorsLoginModel> DoctorsLoginModel { get; set; }
 
         public DbSet<Hospital.Modules.LabManagement.Models.LabLogInModel> LabLogInModel { get; set; }
+
+        public DbSet<Hospital.Modules.Doctors_Profile.Models.ReportCount> ReportCount { get; set; }
     }
 }

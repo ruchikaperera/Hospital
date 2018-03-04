@@ -40,6 +40,10 @@ namespace Hospital.Modules.Doctors_Profile.Models
         [DefaultValue("Pending")]
         public string DoctorStatus { get; set; }
 
+        [DisplayName("Lab Report Details")]
+        [DefaultValue("Pending")]
+        public string LabReport { get; set; }
+
         [DisplayName("Report Date")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
@@ -55,4 +59,6 @@ namespace Hospital.Modules.Doctors_Profile.Models
         [DisplayName("Description")]
         public string description { get; set; }
     }
+
+   
 }

@@ -5,17 +5,26 @@
     Layout = "~/Views/Shared/a.cshtml";
 }
 
-<h2>Index</h2>
 
-<p>
-    <div class="form-group">
-        <input type="submit" asp-action="Create"  value="Create" class="btn btn-primary" />
-    </div>
-    @*<a asp-action="Create">Create New</a>*@
-</p>
-<table class="table">
-    <thead>
-        <tr>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+
+
+    <br />
+    <h2><i class="fa fa-edit"></i></h2>
+    <a href="http://localhost:50730/LabReportRequests/Create"><i class="fa fa-edit">&nbsp;New Lab Report</i></a>
+
+
+    <table class="table">
+        <thead>
+            <tr>
                 <th>
                     @Html.DisplayNameFor(model => model.nicNo)
                 </th>
@@ -37,57 +46,76 @@
                 <th>
                     @Html.DisplayNameFor(model => model.date)
                 </th>
-                <th>
+                @*<th>
                     @Html.DisplayNameFor(model => model.labNo)
-                </th>
+                </th>*@
                 <th>
                     @Html.DisplayNameFor(model => model.SpecialistName)
                 </th>
                 <th>
+                    @Html.DisplayNameFor(model => model.LabReport)
+                </th>
+                <th>
                     @Html.DisplayNameFor(model => model.description)
                 </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.nicNo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.patientName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DoctorName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LabStatus)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LabType)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DoctorStatus)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.date)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.labNo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SpecialistName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.description)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.nicNo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.patientName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DoctorName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LabStatus)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LabType)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DoctorStatus)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.date)
+                    </td>
+                    @*<td>
+                        @Html.DisplayFor(modelItem => item.labNo)
+                    </td>*@
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SpecialistName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LabReport)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.description)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id"><i class="fa fa-edit"></i></a> 
+                        <a asp-action="Details" asp-route-id="@item.Id"><i class="fa fa-edit"></i></a> 
+                        <a asp-action="Delete" asp-route-id="@item.Id"><i class="fa fa-trash"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+
+
+
+
+</body>
+</html>
+
+
+
+

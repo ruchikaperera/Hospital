@@ -2,7 +2,7 @@
 
 @{
     ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/a.cshtml";
+    Layout = "~/Views/Shared/LabDepartment.cshtml";
 }
 
 
@@ -43,6 +43,9 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.SpecialistName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LabReport)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.description)
@@ -93,6 +96,10 @@
             <td>
                 <br />
                 @Html.DisplayFor(modelItem => item.SpecialistName)
+            </td>
+            <td>
+                <br />
+                @Html.DisplayFor(modelItem => item.LabReport)
             </td>
             <td>
                 <br />

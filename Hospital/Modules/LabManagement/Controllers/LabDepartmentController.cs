@@ -67,18 +67,18 @@ namespace Hospital.Modules.LabManagement.Controllers
         // POST: LabDepartment/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,nicNo,patientName,DoctorName,LabStatus,LabType,DoctorStatus,date,labNo,SpecialistName,description")] LabReportRequest labReportRequest)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(labReportRequest);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(labReportRequest);
-        }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> Create([Bind("Id,nicNo,patientName,DoctorName,LabStatus,LabType,DoctorStatus,date,labNo,SpecialistName,description")] LabReportRequest labReportRequest)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        _context.Add(labReportRequest);
+        //        await _context.SaveChangesAsync();
+        //        return RedirectToAction(nameof(Index));
+        //    }
+        //    return View(labReportRequest);
+        //}
 
         // GET: LabDepartment/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -101,12 +101,11 @@ namespace Hospital.Modules.LabManagement.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,nicNo,patientName,DoctorName,LabStatus,LabType,DoctorStatus,date,labNo,SpecialistName,description")] LabReportRequest labReportRequest)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,nicNo,patientName,DoctorName,LabStatus,LabType,DoctorStatus,LabReport,date,labNo,SpecialistName,description")] LabReportRequest labReportRequest)
         {
             // make the report ready
             labReportRequest.LabStatus = "Ready";
 
-            
 
             if (id != labReportRequest.Id)
             {
@@ -119,17 +118,18 @@ namespace Hospital.Modules.LabManagement.Controllers
                 {
                     _context.Update(labReportRequest);
                     await _context.SaveChangesAsync();
+                    await Recived_Report_Count_Update();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!LabReportRequestExists(labReportRequest.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
+                    //if (!LabReportRequestExists(labReportRequest.Id))
+                    //{
+                    //    return NotFound();
+                    //}
+                    //else
+                    //{
+                    //    throw;
+                    //}
                 }
                 return RedirectToAction(nameof(Index));
             }
@@ -137,37 +137,82 @@ namespace Hospital.Modules.LabManagement.Controllers
         }
 
         // GET: LabDepartment/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
+        //public async Task<IActionResult> Delete(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            var labReportRequest = await _context.LabReportRequest
-                .SingleOrDefaultAsync(m => m.Id == id);
-            if (labReportRequest == null)
-            {
-                return NotFound();
-            }
+        //    var labReportRequest = await _context.LabReportRequest
+        //        .SingleOrDefaultAsync(m => m.Id == id);
+        //    if (labReportRequest == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            return View(labReportRequest);
-        }
+        //    return View(labReportRequest);
+        //}
 
         // POST: LabDepartment/Delete/5
-        [HttpPost, ActionName("Delete")]
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> DeleteConfirmed(int id)
+        //{
+        //    var labReportRequest = await _context.LabReportRequest.SingleOrDefaultAsync(m => m.Id == id);
+        //    _context.LabReportRequest.Remove(labReportRequest);
+        //    await _context.SaveChangesAsync();
+        //    return RedirectToAction(nameof(Index));
+        //}
+
+        //private bool LabReportRequestExists(int id)
+        //{
+        //    return _context.LabReportRequest.Any(e => e.Id == id);
+        //}
+
+
+
+
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<int> Recived_Report_Count_Update()
         {
-            var labReportRequest = await _context.LabReportRequest.SingleOrDefaultAsync(m => m.Id == id);
-            _context.LabReportRequest.Remove(labReportRequest);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            int id = 1;
+            var Model = await _context.ReportCount.SingleOrDefaultAsync(m => m.Id == id);
+
+            // get the row count of ReportCount table
+            var no = Model.Count;
+
+            // increment by one 
+            Model.Count = no + 1;
+
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(Model);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!ReportCountExists(Model.Id))
+                    {
+                        // return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+
+            }
+            return Model.Count;
         }
 
-        private bool LabReportRequestExists(int id)
+        private bool ReportCountExists(int id)
         {
-            return _context.LabReportRequest.Any(e => e.Id == id);
+            return _context.ReportCount.Any(e => e.Id == id);
         }
     }
 }

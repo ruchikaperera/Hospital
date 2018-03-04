@@ -10,12 +10,12 @@ using Hospital.Modules.Doctors_Profile.Models;
 
 namespace Hospital.Modules.Doctors_Profile.Controllers
 {
-    public class DoctorsLoginController : Controller
+    public class DoctorsProfileController : Controller
     {
         private readonly HospitalContext _context;
-        public static int no;
+       // public static int no;
 
-        public DoctorsLoginController(HospitalContext context)
+        public DoctorsProfileController(HospitalContext context)
         {
             _context = context;
         }
@@ -24,7 +24,9 @@ namespace Hospital.Modules.Doctors_Profile.Controllers
         public IActionResult Index()
         {
             int No = Get_PendingLabReportsCount();
+            int Finished_Report_count = Get_Finished_LabReportsCount();
             ViewBag.no = No;
+            ViewBag.finishedReportCount = Finished_Report_count;
             //return View(await _context.DoctorsLoginModel.ToListAsync());
             return View("zz");
 
@@ -155,11 +157,30 @@ namespace Hospital.Modules.Doctors_Profile.Controllers
             return _context.DoctorsLoginModel.Any(e => e.Id == id);
         }
 
-        public int Get_PendingLabReportsCount()
+        public  int Get_PendingLabReportsCount()
         {
             string status = "Pending";
-            //no = _context.LabReportRequest.Count(s => s.LabStatus.Equals(status));
-            return 4;
+           var no =  _context.LabReportRequest.Count(s => s.LabStatus.Equals(status));
+            return no;
+
+        }
+
+        public int Get_Finished_LabReportsCount()
+        {
+            var model = _context.ReportCount.SingleOrDefault(s => s.Id.Equals(1));
+            return model.Count;
+
+        }
+
+
+
+
+
+        public int Reset_LabReportCount()
+        {
+            string status = "Pending";
+            var no = _context.LabReportRequest.Count(s => s.LabStatus.Equals(status));
+            return no;
 
         }
     }
