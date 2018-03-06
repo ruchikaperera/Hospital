@@ -11,9 +11,10 @@ using System;
 namespace Hospital.Migrations
 {
     [DbContext(typeof(HospitalContext))]
-    partial class HospitalContextModelSnapshot : ModelSnapshot
+    [Migration("20180301100914_Initial1")]
+    partial class Initial1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -79,11 +80,7 @@ namespace Hospital.Migrations
 
                     b.Property<string>("Name");
 
-                    b.Property<double>("Price");
-
                     b.Property<int>("Qty");
-
-                    b.Property<string>("State");
 
                     b.HasKey("ID");
 
