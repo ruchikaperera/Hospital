@@ -5,6 +5,20 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20180306161202_Initial_patient.cs" />
+    <Compile Remove="Migrations\20180306161202_Initial_patient.Designer.cs" />
+    <Compile Remove="Migrations\20180306161452_Initial_patient1.cs" />
+    <Compile Remove="Migrations\20180306161452_Initial_patient1.Designer.cs" />
+    <Compile Remove="Migrations\20180306161924_Initial_patient2.cs" />
+    <Compile Remove="Migrations\20180306161924_Initial_patient2.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="appsettings.Development.json" />
+    <Content Remove="appsettings.json" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.3" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.1" />
   </ItemGroup>
@@ -15,8 +29,6 @@
 
   <ItemGroup>
     <Folder Include="Modules\Maintanance\" />
-    <Folder Include="Modules\PatientManagement\Controllers\" />
-    <Folder Include="Modules\PatientManagement\Models\" />
   </ItemGroup>
 
 </Project>

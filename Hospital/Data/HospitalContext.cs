@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Hospital.Modules.Doctors_Profile.Models;
 using Hospital.Modules.StaffManagement.Models;
 using Hospital.Modules.LabManagement.Models;
+using Hospital.Modules.PatientManagement.Models;
 
 namespace Hospital.Models
 {
@@ -31,5 +32,9 @@ namespace Hospital.Models
         public DbSet<Hospital.Modules.LabManagement.Models.LabLogInModel> LabLogInModel { get; set; }
 
         public DbSet<Hospital.Modules.Doctors_Profile.Models.ReportCount> ReportCount { get; set; }
+
+        public DbSet<Hospital.Modules.PatientManagement.Models.PatientDetails> Patients { get; set; }
+
+        public DbSet<Hospital.Modules.PatientManagement.Models.Wardassign> Wardassign { get; set; }
     }
 }
