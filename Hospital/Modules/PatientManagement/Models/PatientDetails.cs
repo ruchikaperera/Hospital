@@ -17,7 +17,7 @@ namespace Hospital.Modules.PatientManagement.Models
 
         [DisplayName("Nic Number")]
         [Required(ErrorMessage = "Nic Number is required")]
-        public int NicNo { get; set; }
+        public String NicNo { get; set; }
                 
         
         [DisplayName("Email")]
