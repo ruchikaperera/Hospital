@@ -1,178 +1,208 @@
-﻿
-@{
-    Layout = "/Views/Shared/sidemenu.cshtml"; ;
-}
+﻿@model Hospital.Modules.PatientManagement.Models.PatientDetails
 
-<!DOCTYPE html>
-<style>
-    .div1 {
-        width: 1400px;
-        float: right;
-        border: 0px solid blue;
-        box-sizing: border-box;
+    @{
+        Layout = "/Views/Shared/sidemenu.cshtml"; ;
     }
 
-    .div2 {
-        /*collapsble*/
-        width: 700px;  
-        float:inherit;
-        position:relative;
-        left:150px;
-        border: 0px solid blue;
-        box-sizing: border-box;
-    }
-
-    .box {
-        float: left;
-        width: 280px;
-    }
-
-    body {
-        background-color: #DAE3F5;
-    }
-
-    /*collapsble */
-
-    .collapsible {
-        background-color: #777;
-        color: white;
-        cursor: pointer;
-        padding: 18px;
-        width: 100%;
-        border: none;
-        text-align: left;
-        outline: none;
-        font-size: 15px;
-    }
-
-        .active, .collapsible:hover {
-            background-color: #555;
+    <!DOCTYPE html>
+    <style>
+        .div1 {
+            width: 1400px;
+            float: right;
+            border: 0px solid blue;
+            box-sizing: border-box;
         }
 
-    .content {
-        padding: 0 18px;
-        display: none;
-        overflow: hidden;
-        background-color: #f1f1f1;
-    }
-</style>
+        .div2 {
+            /*collapsble*/
+            width: 700px;
+            float: inherit;
+            position: relative;
+            left: 150px;
+            border: 0px solid blue;
+            box-sizing: border-box;
+        }
 
+        .box {
+            float: left;
+            width: 280px;
+        }
 
+        body {
+            background-color: #DAE3F5;
+        }
 
-<html>
-<head>
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-</head>
+        /*collapsble */
 
-<body>
+        .collapsible {
+            background-color: #777;
+            color: white;
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 15px;
+        }
 
+            .active, .collapsible:hover {
+                background-color: #555;
+            }
 
+        .content {
+            padding: 0 18px;
+            display: none;
+            overflow: hidden;
+            background-color: #f1f1f1;
+        }
+    </style>
 
-    <div class="div1">
+    <html>
+    <head>
+        @*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">*@
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://cdn.rawgit.com/alertifyjs/alertify.js/v1.0.10/dist/js/alertify.js"></script>
 
-        <div style="padding-left:20px">
+        <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
 
-            <div class="box w3-container w3-large  ">
-                <div class="w3-blue w3-large w3-hover-shadow w3-padding-60 w3-center w3-round-medium ">
-                    <p>
-                        <h2><b>@ViewBag.no <a><i class="fa fa-bell"></i></a></h2></b>
-                        <h4>Pending Lab Reports</h4>
-                    </p>
-                </div>
-            </div>
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
 
-            <div class="box w3-container w3-large ">
-                <div class="w3-red w3-large w3-hover-shadow w3-padding-60 w3-center w3-round-medium ">
-                    <p>
-                        <h2><b>@ViewBag.finishedReportCount <a><i class="fa fa-flask"></i></a></h2></b>
-                        <h4>Recived Lab Reports</h4>
-                    </p>
-                </div>
-            </div>
-
-            <div class="box w3-container w3-large ">
-                <div class="w3-yellow w3-large w3-hover-shadow w3-padding-60 w3-center w3-round-medium ">
-                    <p>
-                        <h2>30</h2>
-                        <h4>Number of Patients</h4>
-                    </p>
-
-                </div>
-            </div>
-
-            <div class="box w3-container w3-large ">
-                <div class="w3-green w3-large w3-hover-shadow w3-padding-60 w3-center w3-round-medium ">
-                    <p>
-                        <h2>50</h2>
-                        <h4>Pending Lab Reports</h4>
-                    </p>
-
-                </div>
-            </div>
-
-        </div>
-    </div>
-    <br />
-    <br/>
-
-    <div class="div2">
-
-        <br />
-     
-        <button class="collapsible">Patient Directory</button>
-        <div class="content">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-        </div>
-
-        <p>Collapsible Set:</p>
-        <button class="collapsible">Open Section 1</button>
-        <div class="content">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-        </div>
-        <button class="collapsible">Open Section 2</button>
-        <div class="content">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-        </div>
-        <button class="collapsible">Open Section 3</button>
-        <div class="content">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-        </div>
-
-
+    <body>
 
         <script>
-            var coll = document.getElementsByClassName("collapsible");
-            var i;
+            function callWebApi() {
 
-            for (i = 0; i < coll.length; i++) {
-                coll[i].addEventListener("click", function () {
-                    this.classList.toggle("active");
-                    var content = this.nextElementSibling;
-                    if (content.style.display === "block") {
-                        content.style.display = "none";
-                    } else {
-                        content.style.display = "block";
-                    }
-                });
+                var param = 20;
+
+                $.get("http://localhost:50730/LabReportRequests/Index", { a: 2, b: param })
+                    .done(function (data) {
+                        // alert(data);
+                        document.getElementById("a").innerHTML = data;
+                    });
+
+                alertify.alert("Message");
+                //swal("Success", "New Student Was Created", "success");
+                console.log("done");
+
             }
         </script>
 
 
 
-    </div>
+        <div class="div1">
 
-    
-          
+            <div style="padding-left:20px">
+
+                <div class="box w3-container w3-large  ">
+                    <div class="w3-blue w3-large w3-hover-shadow w3-padding-60 w3-center w3-round-medium ">
+                        <p>
+                            <h2><b>@ViewBag.no <a><i class="fa fa-bell"></i></a></h2></b>
+                            <h4>Pending Lab Reports</h4>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="box w3-container w3-large ">
+                    <div class="w3-red w3-large w3-hover-shadow w3-padding-60 w3-center w3-round-medium ">
+                        <p>
+                            <h2><b>@ViewBag.finishedReportCount</b> <a><i class="fa fa-flask"></i></a></h2>
+                            <h4>Recived Lab Reports</h4>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="box w3-container w3-large ">
+                    <div class="w3-yellow w3-large w3-hover-shadow w3-padding-60 w3-center w3-round-medium ">
+                        <p>
+                            <h2>30</h2>
+                            <h4>Number of Patients</h4>
+                        </p>
+
+                    </div>
+                </div>
+
+                <div class="box w3-container w3-large ">
+                    <div class="w3-green w3-large w3-hover-shadow w3-padding-60 w3-center w3-round-medium ">
+                        <p>
+                            <h2>50</h2>
+                            <h4>Pending Lab Reports</h4>
+                        </p>
+
+                    </div>
+                </div>
 
 
-   
+
+
+
+            </div>
+        </div>
+        <br />
+        <br />
 
 
 
 
+        <div class="div2" style="width: 700px;">
 
-</body>
+            <p></p>
+            
+
+
+            <button class="collapsible">Patient Directory</button>
+            <div class="content">
+
+                <p></p>
+
+                <div class="row">
+
+
+                    <div class="col-lg-4">
+
+                        <div class="form-group">
+
+
+                        </div>
+                    </div>
+
+                    <div class="col-lg-2">
+                        <button type="button" onclick="javascript:callWebApi();" class="btn btn-primary">Search</button>
+                    </div>
+                    <div class="col-lg-2">
+
+                    </div>
+
+                </div>
+                <p id="a"></p>
+
+
+
+
+                <script>
+
+                    var coll = document.getElementsByClassName("collapsible");
+                    var i;
+
+                    for (i = 0; i < coll.length; i++) {
+                        coll[i].addEventListener("click", function () {
+                            this.classList.toggle("active");
+                            var content = this.nextElementSibling;
+                            if (content.style.display === "block") {
+                                content.style.display = "none";
+                            } else {
+                                content.style.display = "block";
+                            }
+                        });
+                    }
+                </script>
+            </div>
+        </div>
+       
+    </body>
 </html>
 
 

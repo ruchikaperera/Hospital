@@ -6,31 +6,27 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Hospital.Models;
-using Hospital.Modules.Doctors_Profile.Models;
-using Hospital.Modules.StaffManagement.Controllers;
+using Hospital.Modules.PatientManagement.Models;
 
-namespace Hospital.Modules.Doctors_Profile.Controllers
+namespace Hospital.Modules.PatientManagement.Controllers
 {
-    public class LabReportRequestsController : Controller
+    public class PatientDetailsController : Controller
     {
         private readonly HospitalContext _context;
 
-        public static int no;
-        public LabReportRequestsController(HospitalContext context)
+        public PatientDetailsController(HospitalContext context)
         {
             _context = context;
         }
 
-        // GET: LabReportRequests
-        public async Task <IActionResult> Index()
+        // GET: PatientDetails
+        public async Task<IActionResult> Index()
         {
-           
-             return View(await _context.LabReportRequest.ToListAsync());
-           
-
+            return View(await _context.PatientDetails.ToListAsync());
         }
 
-        // GET: LabReportRequests/Details/5
+
+        // GET: PatientDetails/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -38,44 +34,39 @@ namespace Hospital.Modules.Doctors_Profile.Controllers
                 return NotFound();
             }
 
-            var labReportRequest = await _context.LabReportRequest
+            var patientDetails = await _context.PatientDetails
                 .SingleOrDefaultAsync(m => m.Id == id);
-            if (labReportRequest == null)
+            if (patientDetails == null)
             {
                 return NotFound();
             }
-            
 
-            return View(labReportRequest);
+            return View(patientDetails);
         }
 
-        // GET: LabReportRequests/Create
+        // GET: PatientDetails/Create
         public IActionResult Create()
         {
-            string username = LogInDetailsController.UserName;
-            username = "Ruchika Perera";
-            ViewBag.username = username;
             return View();
         }
 
-        // POST: LabReportRequests/Create
+        // POST: PatientDetails/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,nicNo,patientName,DoctorName,LabStatus,LabType,DoctorStatus,LabReport,date,labNo,SpecialistName,description")] LabReportRequest labReportRequest)
+        public async Task<IActionResult> Create([Bind("Id,patientName,NicNo,Email,Wardno,Date_Cin,telephone,Address")] PatientDetails patientDetails)
         {
-            labReportRequest.LabStatus = "Pending";
             if (ModelState.IsValid)
             {
-                _context.Add(labReportRequest);
+                _context.Add(patientDetails);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(labReportRequest);
+            return View(patientDetails);
         }
 
-        // GET: LabReportRequests/Edit/5
+        // GET: PatientDetails/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -83,22 +74,22 @@ namespace Hospital.Modules.Doctors_Profile.Controllers
                 return NotFound();
             }
 
-            var labReportRequest = await _context.LabReportRequest.SingleOrDefaultAsync(m => m.Id == id);
-            if (labReportRequest == null)
+            var patientDetails = await _context.PatientDetails.SingleOrDefaultAsync(m => m.Id == id);
+            if (patientDetails == null)
             {
                 return NotFound();
             }
-            return View(labReportRequest);
+            return View(patientDetails);
         }
 
-        // POST: LabReportRequests/Edit/5
+        // POST: PatientDetails/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,nicNo,patientName,DoctorName,LabStatus,LabType,DoctorStatus,LabReport,date,labNo,SpecialistName,description")] LabReportRequest labReportRequest)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,patientName,NicNo,Email,Wardno,Date_Cin,telephone,Address")] PatientDetails patientDetails)
         {
-            if (id != labReportRequest.Id)
+            if (id != patientDetails.Id)
             {
                 return NotFound();
             }
@@ -107,12 +98,12 @@ namespace Hospital.Modules.Doctors_Profile.Controllers
             {
                 try
                 {
-                    _context.Update(labReportRequest);
+                    _context.Update(patientDetails);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!LabReportRequestExists(labReportRequest.Id))
+                    if (!PatientDetailsExists(patientDetails.Id))
                     {
                         return NotFound();
                     }
@@ -123,10 +114,10 @@ namespace Hospital.Modules.Doctors_Profile.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(labReportRequest);
+            return View(patientDetails);
         }
 
-        // GET: LabReportRequests/Delete/5
+        // GET: PatientDetails/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -134,35 +125,34 @@ namespace Hospital.Modules.Doctors_Profile.Controllers
                 return NotFound();
             }
 
-            var labReportRequest = await _context.LabReportRequest
+            var patientDetails = await _context.PatientDetails
                 .SingleOrDefaultAsync(m => m.Id == id);
-            if (labReportRequest == null)
+            if (patientDetails == null)
             {
                 return NotFound();
             }
 
-            return View(labReportRequest);
+            return View(patientDetails);
         }
 
-        // POST: LabReportRequests/Delete/5
+        // POST: PatientDetails/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var labReportRequest = await _context.LabReportRequest.SingleOrDefaultAsync(m => m.Id == id);
-            _context.LabReportRequest.Remove(labReportRequest);
+            var patientDetails = await _context.PatientDetails.SingleOrDefaultAsync(m => m.Id == id);
+            _context.PatientDetails.Remove(patientDetails);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-       
-       
-
-        private bool LabReportRequestExists(int id)
+        private bool PatientDetailsExists(int id)
         {
-            return _context.LabReportRequest.Any(e => e.Id == id);
+            return _context.PatientDetails.Any(e => e.Id == id);
         }
-
-       
+        public IActionResult Login()
+        {
+            return View();
+        }
     }
 }

@@ -11,9 +11,10 @@ using System;
 namespace Hospital.Migrations
 {
     [DbContext(typeof(HospitalContext))]
-    partial class HospitalContextModelSnapshot : ModelSnapshot
+    [Migration("20180317065140_anajana")]
+    partial class anajana
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -113,50 +114,6 @@ namespace Hospital.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("LabLogInModel");
-                });
-
-            modelBuilder.Entity("Hospital.Modules.PatientManagement.Models.PatientDetails", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Address");
-
-                    b.Property<DateTime>("Date_Cin");
-
-                    b.Property<string>("Email");
-
-                    b.Property<string>("NicNo")
-                        .IsRequired();
-
-                    b.Property<string>("Wardno")
-                        .IsRequired();
-
-                    b.Property<string>("patientName")
-                        .IsRequired();
-
-                    b.Property<int>("telephone");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("PatientDetails");
-                });
-
-            modelBuilder.Entity("Hospital.Modules.PatientManagement.Models.Wardassign", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<DateTime>("date");
-
-                    b.Property<int>("patientName");
-
-                    b.Property<string>("wardnumb")
-                        .IsRequired();
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Wardassign");
                 });
 
             modelBuilder.Entity("Hospital.Modules.StaffManagement.Models.EditProfile", b =>

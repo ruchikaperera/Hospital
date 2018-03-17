@@ -19,6 +19,27 @@ namespace Hospital.Modules.Doctors_Profile.Controllers
         {
             _context = context;
         }
+        //public Task<int> SearchPatient(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //       // return NotFound();
+        //    }
+
+        //    var patientModel = _context.patient
+        //       .SingleOrDefaultAsync(m => m.Id == id);
+        //    if (patientModel == null)
+        //    {
+        //      //  return NotFound();
+        //    }
+
+        //    string username = "";
+        //    username = "Ruchika Perera";
+        //    ViewBag.username = username;
+        //   // return View("zz");
+        //   // return 2;
+        //}
+
 
         // GET: DoctorsLogin
         public IActionResult Index()
