@@ -11,9 +11,10 @@ using System;
 namespace Hospital.Migrations
 {
     [DbContext(typeof(HospitalContext))]
-    partial class HospitalContextModelSnapshot : ModelSnapshot
+    [Migration("20180317061758_pet2")]
+    partial class pet2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -149,7 +150,8 @@ namespace Hospital.Migrations
 
                     b.Property<DateTime>("date");
 
-                    b.Property<int>("patientName");
+                    b.Property<string>("patientName")
+                        .IsRequired();
 
                     b.Property<string>("wardnumb")
                         .IsRequired();

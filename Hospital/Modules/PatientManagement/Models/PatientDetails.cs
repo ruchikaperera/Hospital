@@ -9,6 +9,7 @@ namespace Hospital.Modules.PatientManagement.Models
 {
     public class PatientDetails
     {
+        [DisplayName("Patient Id")]
         public int Id { get; set; }
 
         [DisplayName("Patient Name")]

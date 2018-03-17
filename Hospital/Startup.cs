@@ -48,7 +48,7 @@ namespace Hospital
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=PatientDetails}/{action=Index}/{id?}");
+                    template: "{controller=Wardassigns}/{action=Index}/{id?}");
             });
         }
     }

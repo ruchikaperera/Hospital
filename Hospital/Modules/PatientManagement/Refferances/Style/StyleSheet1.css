@@ -1,0 +1,14 @@
+﻿body {
+    background: url(../images/06.jpg) no-repeat;
+    background-size: cover;
+    min-height: 100%;
+}
+
+html {
+    min-height: 100%;
+}
+
+.Error-control {
+    background: #ffdedd !important;
+    border-color: #ff5b57 !important;
+}

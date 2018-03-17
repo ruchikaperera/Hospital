@@ -31,4 +31,6 @@
     <Folder Include="Modules\Maintanance\" />
   </ItemGroup>
 
+  <ProjectExtensions><VisualStudio><UserProperties Modules_4PatientManagement_4vendor_4bootstrap_4css_4bootstrap_1min_1css_32_1map__JSONSchema="" /></VisualStudio></ProjectExtensions>
+
 </Project>

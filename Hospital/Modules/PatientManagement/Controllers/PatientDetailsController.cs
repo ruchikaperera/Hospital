@@ -24,6 +24,7 @@ namespace Hospital.Modules.PatientManagement.Controllers
         {
             return View(await _context.Patients.ToListAsync());
         }
+            
 
         // GET: PatientDetails/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -148,6 +149,9 @@ namespace Hospital.Modules.PatientManagement.Controllers
         private bool PatientDetailsExists(int id)
         {
             return _context.Patients.Any(e => e.Id == id);
+        }
+        public IActionResult Login() {
+            return View();
         }
     }
 }

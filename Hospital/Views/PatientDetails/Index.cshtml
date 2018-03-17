@@ -13,33 +13,39 @@
 <table class="table">
     <thead>
         <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.patientName)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.NicNo)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Email)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Wardno)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Date_Cin)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.telephone)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Address)
-                </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.patientName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NicNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Wardno)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date_Cin)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.telephone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
+            <th>
+                @Html.DisplayFor(modelItem => item.Id)
+            </th>
             <td>
                 @Html.DisplayFor(modelItem => item.patientName)
             </td>
