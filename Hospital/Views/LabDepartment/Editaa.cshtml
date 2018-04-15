@@ -1,95 +1,31 @@
 ﻿@model Hospital.Modules.Doctors_Profile.Models.LabReportRequest
+@*@{
+        ViewData["Title"] = "Edit";
+        Layout = "/Views/Shared/sidemenuLabDepartment.cshtml"; ;
+    }*@
 
 @{
-    ViewData["Title"] = "Edit";
-    Layout = "~/Views/Shared/LabDepartment.cshtml";
+    Layout = "/Views/Shared/sidemenuLabDepartment.cshtml"; ;
 }
-<!DOCTYPE html>
-<style>
-    .div1 {
-        width: 1400px;
-        float: right;
-        border: 0px solid blue;
-        box-sizing: border-box;
-    }
 
-    .div2 {
-        /*collapsble*/
-        width: 700px;
-        float: inherit;
-        position: relative;
-        left: 150px;
-        border: 0px solid blue;
-        box-sizing: border-box;
-    }
+<h2>Edit</h2>
 
-    .box {
-        float: left;
-        width: 280px;
-    }
-
-    body {
-        background-color: #DAE3F5;
-    }
-
-    /*collapsble */
-
-    .collapsible {
-        background-color: #777;
-        color: white;
-        cursor: pointer;
-        padding: 18px;
-        width: 100%;
-        border: none;
-        text-align: left;
-        outline: none;
-        font-size: 15px;
-    }
-
-        .active, .collapsible:hover {
-            background-color: #555;
-        }
-
-    .content {
-        padding: 0 18px;
-        display: none;
-        overflow: hidden;
-        background-color: #f1f1f1;
-    }
-</style>
-
-<html>
-<head>
-    @*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">*@
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="https://cdn.rawgit.com/alertifyjs/alertify.js/v1.0.10/dist/js/alertify.js"></script>
-
-    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
-
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-</head>
-
-<body>
-
-    <h2>Edit</h2>
-
-    <h4>LabReportRequest  bb</h4>
-    <hr />
-    <div class="row">
+<h4>LabReportRequest</h4>
+<hr />
+<div class="row">
+    <div style="padding-left:300px">
         <div class="col-md-4">
             <form asp-action="Edit">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <input type="hidden" asp-for="Id" />
                 <div class="form-group">
                     <label asp-for="nicNo" class="control-label"></label>
-                    <input asp-for="nicNo" class="form-control" />
+                    <input asp-for="nicNo" ReadOnly="readonly" class="form-control" />
                     <span asp-validation-for="nicNo" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="patientName" class="control-label"></label>
-                    <input asp-for="patientName" class="form-control" />
+                    <input asp-for="patientName" ReadOnly="readonly" class="form-control" />
                     <span asp-validation-for="patientName" class="text-danger"></span>
                 </div>
                 <div class="form-group">
@@ -99,7 +35,7 @@
                 </div>
                 <div class="form-group">
                     <label asp-for="LabStatus" class="control-label"></label>
-                    <input asp-for="LabStatus" ReadOnly="readonly" class="form-control" />
+                    <input asp-for="LabStatus" class="form-control" />
                     <span asp-validation-for="LabStatus" class="text-danger"></span>
                 </div>
                 <div class="form-group">
@@ -109,7 +45,7 @@
                 </div>
                 <div class="form-group">
                     <label asp-for="DoctorStatus" class="control-label"></label>
-                    <input asp-for="DoctorStatus" class="form-control" />
+                    <input asp-for="DoctorStatus" ReadOnly="readonly" class="form-control" />
                     <span asp-validation-for="DoctorStatus" class="text-danger"></span>
                 </div>
                 <div class="form-group">
@@ -127,16 +63,15 @@
                     <input asp-for="SpecialistName" class="form-control" />
                     <span asp-validation-for="SpecialistName" class="text-danger"></span>
                 </div>
-
                 <div class="form-group">
                     <label asp-for="LabReport" class="control-label"></label>
-                    <input asp-for="LabReport" value="Pending" ReadOnly="readonly" class="form-control" />
+                    <input asp-for="LabReport" class="form-control" />
                     <span asp-validation-for="LabReport" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="description" class="control-label"></label>
                     <input asp-for="description" class="form-control" />
-                    <span asp-validation-for="description" class="text-danger"></span>
+                    <span asp-validation-for="description" ReadOnly="readonly" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <input type="submit" value="Save" class="btn btn-default" />
@@ -144,16 +79,12 @@
             </form>
         </div>
     </div>
+</div>
 
-    <div>
-        <a asp-action="Index">Back to List</a>
-    </div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
 
-
-
-    @*@section Scripts {
-        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-    }*@
-
-    </body>
-</html>
+@*@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}*@

@@ -70,6 +70,28 @@ namespace Hospital.Modules.Doctors_Profile.Controllers
 
             return View(doctorsLoginModel);
         }
+        public async Task<LabReportRequest> SearchPatient(int? id)
+        {
+            LabReportRequest labReportRequest = new LabReportRequest();
+          
+            if (id == null)
+            {
+              //  return NotFound();
+            }
+
+            ViewBag.a = 30;
+
+             labReportRequest = await _context.LabReportRequest
+                .SingleOrDefaultAsync(m => m.nicNo == id);
+            if (labReportRequest == null)
+            {
+               // return NotFound();
+            }
+
+
+            // return View(labReportRequest);
+            return labReportRequest;
+        }
 
         // GET: DoctorsLogin/Create
         public IActionResult Create()

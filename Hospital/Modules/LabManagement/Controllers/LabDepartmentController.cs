@@ -19,13 +19,14 @@ namespace Hospital.Modules.LabManagement.Controllers
         public IActionResult HomePage()
         {
 
-           return View("LabHomePage");
-            ///
+         
+            
             ViewBag.a = 10;
             ViewBag.b = 80;
             ViewBag.c = 90;
+            return View("LabHomePage");
 
-            return View("Index1");
+
 
         }
 

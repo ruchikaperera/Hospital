@@ -56,7 +56,7 @@ namespace Hospital.Modules.Doctors_Profile.Models
         [DisplayName("Specialist Name")]
         public string SpecialistName { get; set; }
 
-        [DisplayName("Description")]
+        [DisplayName("Doctors Description")]
         public string description { get; set; }
     }
 

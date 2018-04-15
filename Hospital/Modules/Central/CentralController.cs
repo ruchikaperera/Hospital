@@ -10,7 +10,7 @@ namespace Hospital.Modules.Central
     {
         public IActionResult Index()
         {
-            return View();
+            return View("MainPage");
         }
     }
 }

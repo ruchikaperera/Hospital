@@ -1,0 +1,129 @@
+﻿
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <style>
+        .nopadding {
+            padding: 0 !important;
+            margin: 0 !important;
+            border: hidden;
+        }
+    </style>
+
+</head>
+<body>
+
+    <div class="container">
+
+        <div class="panel-group">
+
+            <div class="panel panel-primary">
+                <div class="panel-heading">Patient Report Details</div>
+
+
+                <div class="col-md-12 nopadding">
+                    <div class="panel-body">
+                        <ul class="list-group ">
+
+                            <li class="list-group-item list-group-item-success "><h5>NIC-@ViewBag.Nic</h5></li>
+                            <li class="list-group-item list-group-item-info"><h5>Name- @ViewBag.Name</h5></li>
+                            <li class="list-group-item list-group-item-info">DoctorName - @ViewBag.DoctorName</li>
+                            <li class="list-group-item list-group-item-info">Doctor Status -@ViewBag.DoctorStatus</li>
+                            <li class="list-group-item list-group-item-info">Date -@ViewBag.date</li>
+                            <li class="list-group-item list-group-item-info">Lab No - @ViewBag.labNo</li>
+                            <li class="list-group-item list-group-item-info">@ViewBag.DoctorStatus</li>
+                            <li class="list-group-item list-group-item-info">Lab Report -@ViewBag.LabReport</li>
+                            <li class="list-group-item list-group-item-info">Description - @ViewBag.description</li>
+                            <li class="list-group-item list-group-item-info">Lab Status - @ViewBag.LabStatus</li>
+                            <li class="list-group-item list-group-item-info">Specialist Name -@ViewBag.SpecialistName</li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="container">
+
+        <form class="form-horizontal">
+            <div class="form-group">
+                <div class="col-sm-10">
+                    <label class="control-label col-sm-2">Nic Number</label>
+
+                </div>
+                <div class="col-sm-10">
+                    <ul class="list-group ">
+                        <li class="list-group-item list-group-item-success "><h5>@ViewBag.Nic</h5></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="form-group">
+                ]
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="pwd">Name</label>
+
+                </div>
+                <div class="col-sm-5">
+                    <ul class="list-group ">
+                        <li class="list-group-item list-group-item-success "><h5>@ViewBag.Name</h5></li>
+                    </ul>
+                </div>
+            </div>
+
+
+        </form>
+    </div>
+
+    <div class="w3-container well-lg w3-blue">
+        <h2>Patient Details</h2>
+        <hr />
+        <p>
+            <span class="glyphicon glyphicon-user "></span>
+            <label>Last Name - </label>
+            <label>@ViewBag.Name</label>
+        </p>
+        <p>
+
+            <label>Nic Number - </label>
+            <label>@ViewBag.Nic</label>
+        </p>
+        <p>
+            <label>Last Name - </label>
+            <label>@ViewBag.Name</label>
+        </p>
+        <p>
+            <label>Nic Number - </label>
+            <label>@ViewBag.Nic</label>
+        </p>
+        <p>
+            <label>Last Name - </label>
+            <label>@ViewBag.Name</label>
+        </p>
+        <p>
+            <label>Nic Number - </label>
+            <label>@ViewBag.Nic</label>
+        </p>
+    </div>    
+
+    
+
+
+</body>
+</html>

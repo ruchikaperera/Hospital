@@ -24,10 +24,67 @@ namespace Hospital.Modules.Doctors_Profile.Controllers
         // GET: LabReportRequests
         public async Task <IActionResult> Index()
         {
-           
-             return View(await _context.LabReportRequest.ToListAsync());
-           
 
+             return View(await _context.LabReportRequest.ToListAsync());
+        }
+
+        public async Task<IActionResult> Search()
+        {
+            int id = 962950019;
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            ViewBag.a = 30;
+
+            var labReportRequest = await _context.LabReportRequest
+                .SingleOrDefaultAsync(m => m.nicNo == id);
+
+            ViewBag.Nic = labReportRequest.nicNo;
+            ViewBag.Name = labReportRequest.patientName;
+            ViewBag.LabStatus = labReportRequest.LabStatus;
+            ViewBag.DoctorName = labReportRequest.DoctorName;
+            ViewBag.DoctorStatus = labReportRequest.DoctorStatus;
+            ViewBag.date = labReportRequest.date;
+            ViewBag.DoctorName = labReportRequest.description;
+            ViewBag.labNo = labReportRequest.labNo;
+            ViewBag.LabReport = labReportRequest.LabReport;
+            ViewBag.SpeacialistName = labReportRequest.SpecialistName;
+            ViewBag.description = labReportRequest.description;
+
+
+            string a = labReportRequest.LabStatus;
+            if (labReportRequest == null)
+            {
+                return NotFound();
+            }
+
+            return View("Search");
+        }
+        public async Task<IActionResult> Check(int? id)
+        {
+            id = 666;
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            ViewBag.a = 30;
+
+            var labReportRequest = await _context.LabReportRequest
+                .SingleOrDefaultAsync(m => m.nicNo == id);
+
+            string a = labReportRequest.LabStatus;
+            if (labReportRequest == null)
+            {
+                return NotFound();
+            }
+
+            var i=await _context.LabReportRequest.SingleOrDefaultAsync(m => m.nicNo == id);
+           // return View(await _context.LabReportRequest.ToListAsync());
+            return RedirectToAction("Index", i);
+            return View(labReportRequest);
         }
 
         // GET: LabReportRequests/Details/5
@@ -37,6 +94,8 @@ namespace Hospital.Modules.Doctors_Profile.Controllers
             {
                 return NotFound();
             }
+
+            ViewBag.a = 30;
 
             var labReportRequest = await _context.LabReportRequest
                 .SingleOrDefaultAsync(m => m.Id == id);
@@ -135,7 +194,7 @@ namespace Hospital.Modules.Doctors_Profile.Controllers
             }
 
             var labReportRequest = await _context.LabReportRequest
-                .SingleOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (labReportRequest == null)
             {
                 return NotFound();
