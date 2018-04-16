@@ -1,0 +1,57 @@
+﻿@model Hospital.Modules.StaffManagement.Models.staffTasks
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+
+<div>
+    <h4>staffTasks</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.taskHeading)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.taskHeading)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.taskDetails)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.taskDetails)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.taskOwner)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.taskOwner)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.taskHolder)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.taskHolder)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
+</body>
+</html>

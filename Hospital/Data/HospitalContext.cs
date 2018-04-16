@@ -37,6 +37,8 @@ namespace Hospital.Models
 
         public DbSet<Hospital.Modules.PatientManagement.Models.Wardassign> Wardassign { get; set; }
 
+        public DbSet<Hospital.Modules.StaffManagement.Models.staffTasks> staffTasks { get; set; }
+
 
 
     }
