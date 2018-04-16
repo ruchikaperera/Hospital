@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Hospital.Modules.SalaryDetails.Model.SalaryDetail>
+
+@{
+    ViewData["Title"] = "Salary Details";
+}
+
+<h2>Salary Details</h2>
+
+<p>
+    <a asp-action="Create">Add New Salary Record</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.NIC)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.WorkingHrs)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Rating)
+                </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NIC)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WorkingHrs)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rating)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
