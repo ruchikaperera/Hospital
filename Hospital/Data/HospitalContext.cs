@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Hospital.Modules.Doctors_Profile.Models;
 using Hospital.Modules.StaffManagement.Models;
 using Hospital.Modules.DrugDetails.Models;
+using Hospital.Modules.SalaryDetails.Model;
 
 namespace Hospital.Models
 {
@@ -25,5 +26,7 @@ namespace Hospital.Models
         public DbSet<Hospital.Modules.Doctors_Profile.Models.RequestFacility> RequestFacility { get; set; }
 
         public DbSet<Hospital.Modules.DrugDetails.Models.Drug> Drug { get; set; }
+
+        public DbSet<Hospital.Modules.SalaryDetails.Model.SalaryDetail> SalaryDetails { get; set; }
     }
 }

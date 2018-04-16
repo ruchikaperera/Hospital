@@ -24,8 +24,6 @@
     <Folder Include="Modules\Maintanance\" />
     <Folder Include="Modules\PatientManagement\Controllers\" />
     <Folder Include="Modules\PatientManagement\Models\" />
-    <Folder Include="Modules\SalaryDetails\Model\" />
-    <Folder Include="Modules\SalaryDetails\Controllers\" />
   </ItemGroup>
 
 </Project>
