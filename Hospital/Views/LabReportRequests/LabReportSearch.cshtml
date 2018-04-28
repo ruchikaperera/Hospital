@@ -1,0 +1,133 @@
+﻿@model IEnumerable<Hospital.Modules.Doctors_Profile.Models.LabReportRequest>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>LabReportSearch</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+
+<body>
+    <script>
+
+        function callWebApi() {
+
+           
+
+           
+                $.get("http://localhost:50730/LabReportRequests/LabReportSearch")
+                    .done(function (data) {
+
+                        var i = data;
+                        console.log(i);
+
+                       
+                    });
+            }
+    </script>
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+    <div class="w3-col m3 w3-left w3-padding-24">
+        <button onclick="javascript:callWebApi();" class="w3-button w3-blue w3-button-small">Search</button>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.nicNo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.patientName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DoctorName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LabStatus)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LabType)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DoctorStatus)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LabReport)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.date)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.labNo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SpecialistName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.description)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.nicNo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.patientName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DoctorName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LabStatus)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LabType)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DoctorStatus)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LabReport)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.date)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.labNo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SpecialistName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.description)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>
+</html>

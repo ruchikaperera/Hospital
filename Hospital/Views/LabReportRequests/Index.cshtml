@@ -1,5 +1,6 @@
 ﻿@model IEnumerable<Hospital.Modules.Doctors_Profile.Models.LabReportRequest>
 
+
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/sidemenu.cshtml";
@@ -17,9 +18,34 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+    <style>
+        .accordion {
+            background-color: #eee;
+            color: #444;
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 15px;
+            transition: 0.4s;
+        }
+
+            .active, .accordion:hover {
+                background-color: #ccc;
+            }
+
+        .panel {
+            padding: 0 18px;
+            display: none;
+            background-color: white;
+            overflow: hidden;
+        }
+    </style>
 </head>
-
-
 
 <body>
 
@@ -30,7 +56,7 @@
             //  alert("function is calling");
 
             var param = document.getElementById("usr").innerHTML;
-           // alert(param);
+            // alert(param);
 
             //$.get("http://localhost:50730/LabReportRequests/Check", { a: param, })
             //    .done(function (data) {
@@ -48,46 +74,47 @@
             var param = document.getElementById("usr").innerHTML;
 
             var x = document.getElementById("usr").value;
-              $.get("http://localhost:50730/LabReportRequests/Check", { a: x, })
-                  .done(function (data) {
-                      document.getElementById("demo").innerHTML = data;
+            $.get("http://localhost:50730/LabReportRequests/Check", { a: x, })
+                .done(function (data) {
+                    document.getElementById("demo").innerHTML = data;
 
-                   alert(data);
-
-               });
+                    alert(data);
+                });
         }
     </script>
 
 
-    <br />
-   
 
-    <p>Click the button to display the value of the value attribute of the text field.</p>
 
-    <button onclick="myFunction()">Try it</button>
 
-    <p id="demo"></p>
 
-   
     <h2><i class="fa fa-edit"></i></h2>
     <a href="http://localhost:50730/LabReportRequests/Create"><i class="fa fa-edit">&nbsp;New Lab Report</i></a>
 
-    <div ng-app="">
-        <div class="row">
-            <div class="col-sm-4">
-                <div class="form-group">
-                    <label for="usr">Name:</label>
-                    <input type="text" ng-model="name" onchange="myFunction()" class="form-control" id="usr">
 
-                    <h1>Hello {{name}}</h1>
-                   
+    <button class="accordion">Section 1</button>
+    <div class="panel">
+        <div class="col-10">
 
-                </div>
+            @await Html.PartialAsync("LabReportSearch.cshtml")
+        </div>    </div>
 
-            </div>
-        </div>
+    <script>
+        var acc = document.getElementsByClassName("accordion");
+        var i;
 
-    </div>
+        for (i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function () {
+                this.classList.toggle("active");
+                var panel = this.nextElementSibling;
+                if (panel.style.display === "block") {
+                    panel.style.display = "none";
+                } else {
+                    panel.style.display = "block";
+                }
+            });
+        }
+    </script>
 
     <table class="table">
         <thead>
@@ -174,12 +201,6 @@
             }
         </tbody>
     </table>
-
-
-
-
-
-
 </body>
 </html>
 

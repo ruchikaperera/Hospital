@@ -28,7 +28,7 @@
                 param = 962950019;
                 $.get("http://localhost:50730/DoctorsProfile/SearchPatient", { id: param })
                     .done(function (data) {
-                        document.getElementById('Id').innerHTML = data.id;
+                        document.getElementById('Id').innerHTML = data.id
                         document.getElementById('nic').innerHTML = data.nicNo;
                         document.getElementById('patientName').innerHTML = data.patientName;
                         document.getElementById('LabStatus').innerHTML = data.labStatus;
@@ -140,10 +140,6 @@
             <div class="w3-col m2 w3-left w3-padding-small ">
                 <p id="date"></p>
             </div>
-
-
-
-
 
 
             <div class="w3-col w3-left m2  w3-padding-small ">

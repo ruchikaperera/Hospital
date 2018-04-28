@@ -69,143 +69,150 @@
                         }
 
 
-                }
+            }
+
+                 function callMethod() {
+                     alert("a");
+
+                     
+                     <button  class="w3-button w3-blue w3-button-small">Search</button>
+
+
+                 }
         </script>
     </head>
 
    
    
 
-    <body >
+    <body>
         <div class="row top10 col-md">
             <div class="w3-container">
-              
+
                 <div class="w3-card-4" style="width:100%;">
                     <header class="w3-container w3-blue">
                         <h4>Create New Lab Reports</h4>
                     </header>
 
                     <div class="w3-container">
-                       
-                            <form asp-action="Create">
-                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-                                <div class="row top10 col-md-offset-1">
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <label asp-for="nicNo" class="control-label"></label>
-                                            <input asp-for="nicNo" oninput="javascript:ValidationNic();" id="nicNo" class="form-control" />
-                                            <span asp-validation-for="nicNo" id="error" class="text-danger"></span>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <label asp-for="patientName" class="control-label"></label>
-                                            <input asp-for="patientName" id="patientName" oninput="javascript:ValidationPatientName();" class="form-control" />
-                                            <span asp-validation-for="patientName" id="patientName" class="text-danger"></span>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <label asp-for="DoctorName" class="control-label"></label>
-                                            <input asp-for="DoctorName" value="@ViewBag.userName" ReadOnly="readonly" class="form-control" />
-                                            <span asp-validation-for="DoctorName" class="text-danger"></span>
-                                        </div>
+                        <form asp-action="Create">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                            <div class="row top10 col-md-offset-1">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label asp-for="nicNo" class="control-label"></label>
+                                        <input asp-for="nicNo" oninput="javascript:ValidationNic();" id="nicNo" class="form-control" />
+                                        <span asp-validation-for="nicNo" id="error" class="text-danger"></span>
                                     </div>
                                 </div>
-                                <div class="row col-md-offset-1">
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <label asp-for="LabStatus" class="control-label"></label>
-                                            <input asp-for="LabStatus" value="Pending" ReadOnly="readonly" class="form-control" />
-                                            <span asp-validation-for="LabStatus" class="text-danger"></span>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <label asp-for="LabType" class="control-label"></label>
-                                            <input asp-for="LabType" class="form-control" />
-                                            <span asp-validation-for="LabType" class="text-danger"></span>
-                                        </div>
-
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <label asp-for="DoctorStatus" class="control-label"></label>
-                                            <input asp-for="DoctorStatus" class="form-control" />
-                                            <span asp-validation-for="DoctorStatus" class="text-danger"></span>
-                                        </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label asp-for="patientName" class="control-label"></label>
+                                        <input asp-for="patientName" id="patientName" oninput="javascript:ValidationPatientName();" class="form-control" />
+                                        <span asp-validation-for="patientName" id="patientName" class="text-danger"></span>
                                     </div>
                                 </div>
-                                <div class="row col-md-offset-1">
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <label asp-for="SpecialistName" class="control-label"></label>
-                                            <input asp-for="SpecialistName" value="Not Mentioned" class="form-control" />
-                                            <span asp-validation-for="SpecialistName" class="text-danger"></span>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <label asp-for="date" class="control-label"></label>
-                                            <input asp-for="date" class="form-control" />
-                                            <span asp-validation-for="date" class="text-danger"></span>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <label asp-for="labNo" class="control-label"></label>
-                                            <input asp-for="labNo" class="form-control" />
-                                            <span asp-validation-for="labNo" class="text-danger"></span>
-                                        </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label asp-for="DoctorName" class="control-label"></label>
+                                        <input asp-for="DoctorName" value="@ViewBag.userName" ReadOnly="readonly" class="form-control" />
+                                        <span asp-validation-for="DoctorName" class="text-danger"></span>
                                     </div>
                                 </div>
-
-                                <div class="row col-md-offset-1">
-                                    <div class="col-sm-4 ">
-                                        <div class="form-group">
-                                            <label asp-for="LabReport" class="control-label"></label>
-                                            <input asp-for="LabReport" ReadOnly="readonly" class="form-control" />
-                                            <span asp-validation-for="LabReport" class="text-danger"></span>
-                                        </div>
+                            </div>
+                            <div class="row col-md-offset-1">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label asp-for="LabStatus" class="control-label"></label>
+                                        <input asp-for="LabStatus" value="Pending" ReadOnly="readonly" class="form-control" />
+                                        <span asp-validation-for="LabStatus" class="text-danger"></span>
                                     </div>
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <label asp-for="description" class="control-label"></label>
-                                            <input asp-for="description" value="Pending" ReadOnly="readonly" class="form-control" />
-                                            <span asp-validation-for="description" class="text-danger"></span>
-                                        </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label asp-for="LabType" class="control-label"></label>
+                                        <input asp-for="LabType" class="form-control" />
+                                        <span asp-validation-for="LabType" class="text-danger"></span>
+                                    </div>
 
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label asp-for="DoctorStatus" class="control-label"></label>
+                                        <input asp-for="DoctorStatus" class="form-control" />
+                                        <span asp-validation-for="DoctorStatus" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row col-md-offset-1">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label asp-for="SpecialistName" class="control-label"></label>
+                                        <input asp-for="SpecialistName" value="Not Mentioned" class="form-control" />
+                                        <span asp-validation-for="SpecialistName" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label asp-for="date" class="control-label"></label>
+                                        <input asp-for="date" class="form-control" />
+                                        <span asp-validation-for="date" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label asp-for="labNo" class="control-label"></label>
+                                        <input asp-for="labNo" class="form-control" />
+                                        <span asp-validation-for="labNo" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row col-md-offset-1">
+                                <div class="col-sm-4 ">
+                                    <div class="form-group">
+                                        <label asp-for="LabReport" class="control-label"></label>
+                                        <input asp-for="LabReport" value="Pending" ReadOnly="readonly" class="form-control" />
+                                        <span asp-validation-for="LabReport" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label asp-for="description" class="control-label"></label>
+                                        <input asp-for="description" value="Pending" ReadOnly="readonly" class="form-control" />
+                                        <span asp-validation-for="description" class="text-danger"></span>
                                     </div>
 
                                 </div>
 
-                                <button onclick="javascript:callWebApi();" class="w3-button w3-blue w3-button-small">Search</button>
-                                <div class="w3-row ex1 ">
-                                    <div class="w3-col m1   ">
-                                        <input type="submit" value="Send Report" class="btn btn-primary" />
-                                    </div>
-                                    <div class="w3-col m1 ex2 ">
-                                        <form asp-action="Index">
-                                            <input type="submit" onclick="javascript:callWebApi();" value="Clear" class="btn btn-success" />
-                                        </form>
-                                    </div>
+                            </div>
 
+                            <button onclick="javascript:callMethod();" class="w3-button w3-blue w3-button-small">Search</button>
+                            <div class="w3-row ex1 ">
+                                <div class="w3-col m1   ">
+                                    <input type="submit" value="Send Report" class="btn btn-primary" />
+                                </div>
+                                <div class="w3-col m1 ex2 ">
+                                    <form asp-action="Index">
+                                        <input type="submit" onclick="javascript:callWebApi();" value="Clear" class="btn btn-success" />
+                                    </form>
                                 </div>
 
-                            </form>
+                            </div>
 
-                      
-                      
+                        </form>
+
+
+
                     </div>
-
-                    @*<footer class="w3-container w3-blue">
-                        <h5>Footer</h5>
-                    </footer>*@
                 </div>
             </div>
         </div>
+
        
+
 
     </body>
     </html>

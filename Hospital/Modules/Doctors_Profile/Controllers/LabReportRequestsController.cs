@@ -25,7 +25,21 @@ namespace Hospital.Modules.Doctors_Profile.Controllers
         public async Task <IActionResult> Index()
         {
 
-             return View(await _context.LabReportRequest.ToListAsync());
+            return View(await _context.LabReportRequest.ToListAsync());
+        }
+
+        public async Task<IActionResult> LabReportSearch()
+        {
+            int id = 3;
+            // var i = await _context.LabReportRequest.ToListAsync();
+
+            var req = await _context.LabReportRequest
+                      .Where(m => m.labNo == id).ToListAsync();
+
+            return View(req);
+
+
+             // return View(await _context.LabReportRequest.ToListAsync());
         }
 
         public async Task<IActionResult> Search()
