@@ -1,4 +1,4 @@
-﻿@model Hospital.Modules.Doctors_Profile.Models.LabReportRequest
+﻿@model Hospital.Modules.PatientManagement.Models.PatientDetails
 
 @{
     Layout = null;
@@ -14,38 +14,68 @@
             padding-left: 1em;
         }
     </style>
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width">
     <title>SearchPatient</title>
     <script>
-        function callWebApi() {
+
+        function DisableButton() {
 
             var param = document.getElementById("usr").value;
-            if (param.length < 5) {
-                // alertify.alert("Please Enter A Valid Patient ID...");
-                swal("Not Found !", "Invalid Patient ID", "warning");
+            if (param.length < 4) {
+                document.getElementById("btn").disabled = true;
             }
             else {
-                param = 962950019;
-                $.get("http://localhost:50730/DoctorsProfile/SearchPatient", { id: param })
+                document.getElementById("btn").disabled = false;
+            }
+
+
+        }
+
+        function callWebApi() {
+
+
+            var param = document.getElementById("usr").value;
+            if (param.length < 4) {
+                swal("Invalid !", "Enter a valid patient ID", "warning");
+
+                document.getElementById("btn").disabled = true;
+            }
+            else {
+                document.getElementById("btn").disabled = false;
+            }
+
+            document.getElementById('Id').innerHTML = "Invalid ID";
+            document.getElementById('nic').innerHTML = "";
+            document.getElementById('patientName').innerHTML = "";
+            document.getElementById('LabStatus').innerHTML = "";
+            document.getElementById('DoctorStatus').innerHTML = "";
+            document.getElementById('LabReport').innerHTML = "";
+            document.getElementById('date').innerHTML = "";
+            document.getElementById('SpecialistName').innerHTML = "";
+            document.getElementById('description').innerHTML = "";
+            if (param.length =0) {
+                // alertify.alert("Please Enter A Valid Patient ID...");
+                swal("Invalid !", "Invalid Patient ID", "warning");
+            }
+            else {
+                $.get("http://localhost:50730/DoctorsProfile/SearchLab", { id: param })
                     .done(function (data) {
-                        document.getElementById('Id').innerHTML = data.id
+
+                        document.getElementById('Id').innerHTML = data.reportId
                         document.getElementById('nic').innerHTML = data.nicNo;
                         document.getElementById('patientName').innerHTML = data.patientName;
                         document.getElementById('LabStatus').innerHTML = data.labStatus;
                         document.getElementById('DoctorStatus').innerHTML = data.doctorStatus;
                         document.getElementById('LabReport').innerHTML = data.labReport;
                         document.getElementById('date').innerHTML = data.date;
-                        // document.getElementById('labNo').innerHTML = data.labNo;
                         document.getElementById('SpecialistName').innerHTML = data.SpecialistName;
                         document.getElementById('description').innerHTML = data.description;
-                    });
-
+                    })              
             }
 
-           
-            // alertify.alert("Message");
-            //swal("Success", "New Student Was Created", "success");
-            // console.log("done");
+          
+                
+           // swal("Success", "New Student Was Created", "success");
 
         }
 
@@ -65,17 +95,21 @@
         <div class="w3-row">
             <div class="w3-col m3 w3-padding-large ">
                     
-                <p>
-                    <input type="text" onfocus="this.value=''" placeholder="Enter Patient ID..." onchange="myFunction()" class="form-control" id="usr">
-                </p>               
+                
+                    @*oninput="javascript:callWebApi();"*@
+                    <input type="text" oninput="DisableButton()" placeholder="Enter Patient ID..." class="form-control" id="usr">
+                            
             </div>
-            <div class="w3-col m3 w3-left w3-padding-24">
-                    <button onclick="javascript:callWebApi();" class="w3-button w3-blue w3-button-small">Search</button>
+            <div class="w3-col m4 w3-left w3-padding-large">
+              
+
+                    <button onclick="javascript:callWebApi();" id="btn" class="w3-button w3-blue w3-button-small">Search</button>
+                    
             </div>
         </div>
         <div class="w3-row">
             <div class="w3-col w3-left m2  w3-padding-small ">
-                <p>ID -</p>
+                <p>ID aa :</p>
             </div>
             <div class="w3-col m2 w3-left w3-padding-small ">
                 <p id="Id"></p>
@@ -84,7 +118,7 @@
 
 
             <div class="w3-col m2 w3-left w3-padding-small">
-                <p>Nic Number</p>
+                <p>Nic Number :</p>
             </div>
             <div class="w3-col m2 w3-left  w3-padding-small">
                 <p id="nic"></p>
@@ -92,7 +126,7 @@
 
 
             <div class="w3-col w3-left m2  w3-padding-small ">
-                <p>Patient Name -</p>
+                <p>Patient Name :</p>
             </div>
             <div class="w3-col m2 w3-left w3-padding-small ">
                 <p id="patientName"></p>
@@ -105,7 +139,7 @@
 
 
             <div class="w3-col w3-left m2  w3-padding-small ">
-                <p>LabStatus -</p>
+                <p>Address :</p>
             </div>
             <div class="w3-col m2 w3-left w3-padding-small ">
                 <p id="LabStatus"></p>
@@ -114,7 +148,7 @@
 
 
             <div class="w3-col m2 w3-left w3-padding-small">
-                <p>DoctorStatus</p>
+                <p>Mobile No :</p>
             </div>
             <div class="w3-col m2 w3-left  w3-padding-small">
                 <p id="DoctorStatus"></p>
@@ -122,7 +156,7 @@
 
 
             <div class="w3-col w3-left m2  w3-padding-small ">
-                <p>LabReport -</p>
+                <p>LabReport :</p>
             </div>
             <div class="w3-col m2 w3-left w3-padding-small ">
                 <p id="LabReport"></p>
@@ -135,7 +169,7 @@
 
 
             <div class="w3-col w3-left m2  w3-padding-small ">
-                <p>Date -</p>
+                <p>Date :</p>
             </div>
             <div class="w3-col m2 w3-left w3-padding-small ">
                 <p id="date"></p>
@@ -143,14 +177,14 @@
 
 
             <div class="w3-col w3-left m2  w3-padding-small ">
-                <p>SpecialistName -</p>
+                <p>SpecialistName :</p>
             </div>
             <div class="w3-col m2 w3-left w3-padding-small ">
                 <p id="SpecialistName"></p>
             </div>
 
             <div class="w3-col m2 w3-left w3-padding-small">
-                <p>description</p>
+                <p>description :</p>
             </div>
             <div class="w3-col m2 w3-left  w3-padding-small">
                 <p id="description"></p>

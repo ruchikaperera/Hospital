@@ -13,6 +13,8 @@ namespace Hospital.Modules.Doctors_Profile.Controllers
 {
     public class LabReportRequestsController : Controller
     {
+       public static bool filter ;
+
         private readonly HospitalContext _context;
 
         public static int no;
@@ -24,9 +26,59 @@ namespace Hospital.Modules.Doctors_Profile.Controllers
         // GET: LabReportRequests
         public async Task <IActionResult> Index()
         {
+            
 
-            return View(await _context.LabReportRequest.ToListAsync());
+            await Update_Report_Count();
+
+            if(filter)
+            {
+                var req = await _context.LabReportRequest
+                     .Where(m => m.LabStatus == "Pending").ToListAsync();
+
+                filter = false;
+
+                return View(req);
+
+            }
+            else
+            {
+                var req = from s in _context.LabReportRequest
+                          orderby s.ReportId descending
+                          select s;
+
+                filter = true;
+                return View(await req.ToListAsync());
+
+            }
+
+
+
+
+            // return View(await _context.LabReportRequest.ToListAsync());
+
         }
+
+        public async Task<IActionResult> ABC()
+        {
+            var req = await _context.LabReportRequest
+                    .Where(m => m.LabStatus == "Pending").ToListAsync();
+
+            return View("Index", req);
+        }
+
+        //public async Task<IActionResult> PendingReports()
+        //{
+        //    IEnumerable<LabReportRequest> labReportRequest;
+
+        //    var a = await _context.LabReportRequest
+        //               .Where(m => m.LabStatus == "Pending").ToListAsync();
+
+        //    // return View(await _context.LabReportRequest.ToListAsync());
+        //    return View(await a.ToList());
+
+        //}
+
+
 
         public async Task<IActionResult> LabReportSearch()
         {
@@ -39,7 +91,6 @@ namespace Hospital.Modules.Doctors_Profile.Controllers
             return View(req);
 
 
-             // return View(await _context.LabReportRequest.ToListAsync());
         }
 
         public async Task<IActionResult> Search()
@@ -127,6 +178,8 @@ namespace Hospital.Modules.Doctors_Profile.Controllers
         {
             string username = LogInDetailsController.UserName;
             username = "Ruchika Perera";
+           // username = Central.CentralController.userName;
+
             ViewBag.username = username;
             return View();
         }
@@ -138,6 +191,10 @@ namespace Hospital.Modules.Doctors_Profile.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,nicNo,patientName,DoctorName,LabStatus,LabType,DoctorStatus,LabReport,date,labNo,SpecialistName,description")] LabReportRequest labReportRequest)
         {
+            labReportRequest.ReportId = 1000;
+
+            int  lastReportID = _context.LabReportRequest.LastOrDefault().ReportId;
+            labReportRequest.ReportId = lastReportID + 1;
             labReportRequest.LabStatus = "Pending";
             if (ModelState.IsValid)
             {
@@ -228,8 +285,41 @@ namespace Hospital.Modules.Doctors_Profile.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-       
-       
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<int> Update_Report_Count()
+        {
+            ReportCount reportCount = new ReportCount();
+            int id = 1;
+
+            var Model = await _context.ReportCount.SingleOrDefaultAsync(m => m.Id == id);
+
+            // get the row count of ReportCount table
+
+
+            // increment by one 
+            Model.Count = 0;
+
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(reportCount);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    
+                }
+
+            }
+            return reportCount.Count;
+        }
+
+
+
+
 
         private bool LabReportRequestExists(int id)
         {

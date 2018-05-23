@@ -44,6 +44,65 @@
             background-color: white;
             overflow: hidden;
         }
+
+        /* toggle switch*/
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+            .switch input {
+                display: none;
+            }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+            .slider:before {
+                position: absolute;
+                content: "";
+                height: 26px;
+                width: 26px;
+                left: 4px;
+                bottom: 4px;
+                background-color: white;
+                -webkit-transition: .4s;
+                transition: .4s;
+            }
+
+        input:checked + .slider {
+            background-color: #2196F3;
+        }
+
+        input:focus + .slider {
+            box-shadow: 0 0 1px #2196F3;
+        }
+
+        input:checked + .slider:before {
+            -webkit-transform: translateX(26px);
+            -ms-transform: translateX(26px);
+            transform: translateX(26px);
+        }
+
+        /* Rounded sliders */
+        .slider.round {
+            border-radius: 34px;
+        }
+
+            .slider.round:before {
+                border-radius: 50%;
+            }
     </style>
 </head>
 
@@ -81,44 +140,43 @@
                     alert(data);
                 });
         }
-    </script>
+
+        function FilterReports() {
+
+            //  alert("A");
+
+            $.get("http://localhost:50730/LabReportRequests/ABC")
+                .done(function (data) {
+
+                    var i = data;
 
 
 
+                });
+           
 
-
-
-    <h2><i class="fa fa-edit"></i></h2>
-    <a href="http://localhost:50730/LabReportRequests/Create"><i class="fa fa-edit">&nbsp;New Lab Report</i></a>
-
-
-    <button class="accordion">Section 1</button>
-    <div class="panel">
-        <div class="col-10">
-
-            @await Html.PartialAsync("LabReportSearch.cshtml")
-        </div>    </div>
-
-    <script>
-        var acc = document.getElementsByClassName("accordion");
-        var i;
-
-        for (i = 0; i < acc.length; i++) {
-            acc[i].addEventListener("click", function () {
-                this.classList.toggle("active");
-                var panel = this.nextElementSibling;
-                if (panel.style.display === "block") {
-                    panel.style.display = "none";
-                } else {
-                    panel.style.display = "block";
-                }
-            });
         }
     </script>
 
+
+    <form class="w3-container w3-white w3-card-1">
+        <h5>Filter Reports</h5>
+
+ 
+        <label class="switch">
+            <input type="checkbox" onchange="FilterReports()" checked>
+            <span class="slider round"></span>
+        </label>
+
+    </form>
+
+
     <table class="table">
-        <thead>
-            <tr>
+        <thead style="background-color:lightseagreen ; color:white ; font-size:17px">
+            <tr style="background-color:Highlight">
+                <th>
+                    @Html.DisplayNameFor(model => model.ReportId)
+                </th>
                 <th>
                     @Html.DisplayNameFor(model => model.nicNo)
                 </th>
@@ -140,9 +198,7 @@
                 <th>
                     @Html.DisplayNameFor(model => model.date)
                 </th>
-                @*<th>
-                        @Html.DisplayNameFor(model => model.labNo)
-                    </th>*@
+
                 <th>
                     @Html.DisplayNameFor(model => model.SpecialistName)
                 </th>
@@ -155,10 +211,13 @@
                 <th></th>
             </tr>
         </thead>
-        <tbody>
+        <tbody style="background-color:powderblue;font-style:initial;text-align:center; color:royalblue;font-size:17px">
             @foreach (var item in Model)
             {
                 <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ReportId)
+                    </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.nicNo)
                     </td>
@@ -192,10 +251,9 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.description)
                     </td>
-                    <td>
+                    <td style="column-fill:auto">
                         <a asp-action="Edit" asp-route-id="@item.Id"><i class="fa fa-edit"></i></a>
-                        <a asp-action="Details" asp-route-id="@item.Id"><i class="fa fa-edit"></i></a>
-                        <a asp-action="Delete" asp-route-id="@item.Id"><i class="fa fa-trash"></i></a>
+                        <a asp-action="Details" asp-route-id="@item.Id"><i class="fa fa-file"></i></a>
                     </td>
                 </tr>
             }
@@ -203,6 +261,7 @@
     </table>
 </body>
 </html>
+
 
 
 

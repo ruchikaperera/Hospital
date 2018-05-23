@@ -1,0 +1,67 @@
+﻿@model Hospital.Modules.Prescriptions.Models.BindMedicationPrescription
+
+@{
+    Layout = "~/Views/BindMedicationPrescriptions/_medicationpriscription.cshtml";
+}
+
+<br />
+<hr />
+<br />
+<div class="row" style="background-color:whitesmoke;width:450px;height:600px;margin: auto;align-content:center">
+    <div class="col-md-12">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <br />
+
+            <div class="form-group col-sm-2">
+                <label asp-for="PID" class="control-label"></label>
+                @Html.DropDownList("PID", "Select patient")
+            </div>
+
+            @*<div class="form-group">
+            <input type="hidden" asp-for="PID" value="@Model.PID" class="form-control" />
+        </div>*@
+            <br />
+            <br />
+
+            <br />
+            <br />
+            <div class="form-group">
+                <label asp-for="Treatment" class="control-label"></label>
+                <input asp-for="Treatment" class="form-control" />
+                <span asp-validation-for="Treatment" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Case_history" class="control-label"></label>
+                <input asp-for="Case_history" class="form-control" />
+                <span asp-validation-for="Case_history" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Note" class="control-label"></label>
+                <input asp-for="Note" class="form-control" />
+                <span asp-validation-for="Note" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="medication" class="control-label"></label>
+                <input asp-for="medication" class="form-control" />
+                <span asp-validation-for="medication" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="When_to_take" class="control-label"></label>
+                <input asp-for="When_to_take" class="form-control" />
+                <span asp-validation-for="When_to_take" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

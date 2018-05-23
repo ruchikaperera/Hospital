@@ -1,0 +1,138 @@
+﻿@model Hospital.Modules.InvoiceDetails.Models.Invoice
+
+@{
+    Layout = "~/Views/Invoices/_InvoiceLayout.cshtml";
+}
+
+
+<hr />
+<div class="row" style="background-color:whitesmoke;width:450px;height:600px;margin: auto;align-content:center">
+    <div class="col-md-12">
+
+
+        <br /><br />
+        <form class="form-inline" asp-controller="Invoices" asp-action="cal">
+
+            <div class="form-group">
+
+
+                <label asp-for="PatienID" class="control-label"></label>
+                @*@Html.DropDownList("PatienID", "Select Patient")*@
+
+                <select id="myDropdown" onclick="caltot()">
+                    <option>Select Patient</option>
+                    @foreach (var item in ViewBag.PatienID)
+                    {
+                        <option>@item.Text</option>
+                    }
+                </select>
+            </div>
+        </form>
+
+
+
+
+
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <br />
+            <div class="form-group">
+                <label asp-for="Total_Amount" class="control-label"></label>
+                <input asp-for="Total_Amount" value="@ViewBag.Total_Amount" class="form-control" />
+                <span asp-validation-for="Total_Amount" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="Pay_type" class="control-label"></label>
+                <input asp-for="Pay_type" class="form-control" />
+                <span asp-validation-for="Pay_type" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                <input asp-for="Status" class="form-control" />
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Date" class="control-label"></label>
+                <input asp-for="Date" class="form-control" />
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Comments" class="control-label"></label>
+                <input asp-for="Comments" class="form-control" />
+                <span asp-validation-for="Comments" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+
+
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script type="text/javascript">
+
+    function caltot() {
+        $("#myDropdown").change(function () {
+            var selectedValue = $(this).val();
+            $("#txtBox").val(selectedValue)
+
+            var url = '@Url.Action("cal","Invoices")';
+                    window.location = url;
+
+        });
+    }
+
+</script>
+
+
+
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript">
+        function caltot() {
+            $("#myDropdown").change(function () {
+                var selectedValue = $(this).val();
+                $("#txtBox").val($(this).find("option:selected").attr("value"))
+            });
+        }
+
+    </script>
+
+    <select id="myDropdown" onclick="caltot()">
+        <option>Select Patient</option>
+        @foreach (var item in ViewBag.PatienID)
+        {
+            <option>@item.Text</option>
+        }
+    </select>*@

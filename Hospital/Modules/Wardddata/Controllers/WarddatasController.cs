@@ -6,26 +6,41 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Hospital.Models;
-using Hospital.Modules.PatientManagement.Models;
+using Hospital.Modules.Wardddata.Models;
 
-namespace Hospital.Modules.PatientManagement.Controllers
+namespace Hospital.Modules.Wardddata.Controllers
 {
-    public class WardassignsController : Controller
+    public class WarddatasController : Controller
     {
         private readonly HospitalContext _context;
 
-        public WardassignsController(HospitalContext context)
+        public WarddatasController(HospitalContext context)
         {
             _context = context;
         }
 
-        // GET: Wardassigns
+        // GET: Warddatas
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Wardassign.ToListAsync());
+            return View(await _context.Warddatas.ToListAsync());
         }
 
-        // GET: Wardassigns/Details/5
+        //Search
+        public async Task<IActionResult> Search(string searchString)
+        {
+            var d = from ward in _context.Warddatas
+                    select ward;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                d = d.Where(s => s.wardno.Contains(searchString));
+            }
+
+            return View(await d.ToListAsync());
+        }
+
+
+        // GET: Warddatas/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,39 +48,39 @@ namespace Hospital.Modules.PatientManagement.Controllers
                 return NotFound();
             }
 
-            var wardassign = await _context.Wardassign
+            var warddatas = await _context.Warddatas
                 .SingleOrDefaultAsync(m => m.Id == id);
-            if (wardassign == null)
+            if (warddatas == null)
             {
                 return NotFound();
             }
 
-            return View(wardassign);
+            return View(warddatas);
         }
 
-        // GET: Wardassigns/Create
+        // GET: Warddatas/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Wardassigns/Create
+        // POST: Warddatas/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,patientName,nicNo,date")] Wardassign wardassign)
+        public async Task<IActionResult> Create([Bind("Id,wardno,date,description,status,NoOfBed")] Warddatas warddatas)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(wardassign);
+                _context.Add(warddatas);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(wardassign);
+            return View(warddatas);
         }
 
-        // GET: Wardassigns/Edit/5
+        // GET: Warddatas/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -73,22 +88,22 @@ namespace Hospital.Modules.PatientManagement.Controllers
                 return NotFound();
             }
 
-            var wardassign = await _context.Wardassign.SingleOrDefaultAsync(m => m.Id == id);
-            if (wardassign == null)
+            var warddatas = await _context.Warddatas.SingleOrDefaultAsync(m => m.Id == id);
+            if (warddatas == null)
             {
                 return NotFound();
             }
-            return View(wardassign);
+            return View(warddatas);
         }
 
-        // POST: Wardassigns/Edit/5
+        // POST: Warddatas/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,patientName,nicNo,date")] Wardassign wardassign)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,wardno,date,description,status,NoOfBed")] Warddatas warddatas)
         {
-            if (id != wardassign.Id)
+            if (id != warddatas.Id)
             {
                 return NotFound();
             }
@@ -97,12 +112,12 @@ namespace Hospital.Modules.PatientManagement.Controllers
             {
                 try
                 {
-                    _context.Update(wardassign);
+                    _context.Update(warddatas);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!WardassignExists(wardassign.Id))
+                    if (!WarddatasExists(warddatas.Id))
                     {
                         return NotFound();
                     }
@@ -113,10 +128,10 @@ namespace Hospital.Modules.PatientManagement.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(wardassign);
+            return View(warddatas);
         }
 
-        // GET: Wardassigns/Delete/5
+        // GET: Warddatas/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -124,30 +139,30 @@ namespace Hospital.Modules.PatientManagement.Controllers
                 return NotFound();
             }
 
-            var wardassign = await _context.Wardassign
+            var warddatas = await _context.Warddatas
                 .SingleOrDefaultAsync(m => m.Id == id);
-            if (wardassign == null)
+            if (warddatas == null)
             {
                 return NotFound();
             }
 
-            return View(wardassign);
+            return View(warddatas);
         }
 
-        // POST: Wardassigns/Delete/5
+        // POST: Warddatas/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var wardassign = await _context.Wardassign.SingleOrDefaultAsync(m => m.Id == id);
-            _context.Wardassign.Remove(wardassign);
+            var warddatas = await _context.Warddatas.SingleOrDefaultAsync(m => m.Id == id);
+            _context.Warddatas.Remove(warddatas);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool WardassignExists(int id)
+        private bool WarddatasExists(int id)
         {
-            return _context.Wardassign.Any(e => e.Id == id);
+            return _context.Warddatas.Any(e => e.Id == id);
         }
     }
 }

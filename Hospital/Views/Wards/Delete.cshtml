@@ -1,0 +1,47 @@
+﻿@model Hospital.Modules.Wardassign.Models.Ward
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<body style="background-color:lightslategray;">
+    <h2>Delete</h2>
+
+    <h3>Are you sure you want to delete this assignment?</h3>
+    <div>
+        <h4>Ward assignment details</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.wardNo)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.wardNo)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.empno)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.empno)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.dateDutyOn)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.dateDutyOn)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.timeDutyOn)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.timeDutyOn)
+            </dd>
+        </dl>
+
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="Id" style="color:white;" class="btn btn-primary"/>
+            <input type="submit" value="Delete" style="color:white;" class="btn btn-primary" /> 
+            <a asp-action="Index"style="color:white;" class="btn btn-primary">Back to List</a>
+        </form>
+    </div>
+    </body>

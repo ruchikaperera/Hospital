@@ -1,0 +1,45 @@
+﻿@model Hospital.Modules.StaffData.Models.Staffdatas
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<body style=" background-color:lightslategray">
+
+    <h2>Details Of Attendance</h2>
+
+    <div>
+        @*<h4>Staffdatas</h4>*@
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Staffid)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Staffid)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Date)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Date)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Attendance)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Attendance)
+            </dd>
+        </dl>
+    </div>
+    <div>
+        <a asp-action="Edit" class=" btn btn-primary" asp-route-id="@Model.Id">Edit</a> 
+        <a asp-action="Index" class=" btn btn-primary"><b><<< </b>Back</a>
+    </div>
+</body>

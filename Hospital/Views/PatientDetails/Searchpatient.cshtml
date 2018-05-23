@@ -1,0 +1,113 @@
+﻿@model IEnumerable<Hospital.Modules.PatientManagement.Models.PatientDetails>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script type="text/javascript">
+    function fowrdtocreate(){
+        window.location.href = "/PatientDetails/Create";
+        Console.log = "asfasffffffffffffffffffff";
+    }
+</script>
+<style>
+    input[type=text] {
+        width: 130px;
+        height: 30px;
+        box-sizing: border-box;
+        border: 2px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+        background-color: white;
+        background-image: url('searchicon.png');
+        background-position: 10px 10px;
+        background-repeat: no-repeat;
+        padding: 12px 15px 12px 10px;
+        -webkit-transition: width 0.4s ease-in-out;
+        transition: width 0.4s ease-in-out;
+    }
+
+        input[type=text]:focus {
+            width: 20%;
+        }
+</style>
+
+<body style="background-color:lightslategray">
+
+    <h2>Patients</h2>
+    <form asp-action="Searchpatient" asp-controller="PatientDetails">
+        <input type="text" name="Nic" placeholder="Search..">
+    </form>
+    <form asp-action="Create" method="post">
+        <p>
+            <button style="float:right; color:lightslategray" class="btn  " onclick="fowrdtocreate" type="submit">Create New</button>
+        </p>
+    </form>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.patientName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NicNo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Email)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Wardno)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Date_Cin)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.telephone)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Address)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <th>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.patientName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NicNo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Wardno)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Date_Cin)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.telephone)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Address)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id" style="color:white">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id" style="color:white">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id" style="color:white">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>

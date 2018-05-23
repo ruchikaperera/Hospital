@@ -16,6 +16,10 @@ namespace Hospital.Modules.Doctors_Profile.Models
 
         public int Id { get; set; }
 
+        [DisplayName("Report Id")]
+        public int ReportId { get; set; }
+
+
         [DisplayName("Nic Number")]
         [Required(ErrorMessage = "Nic Number is required")]
         public int nicNo { get; set; }

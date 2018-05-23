@@ -1,0 +1,76 @@
+﻿@model IEnumerable<Hospital.Modules.Wardddata.Models.Warddatas>
+
+@{
+    ViewData["Title"] = "WardData";
+}
+
+<body style=" background-color:lightslategray">
+
+    <h2> Ward Details</h2>
+
+    @*<form class=" form-inline" asp-controller="Warddatas" asp-action="Search">
+        <div class=" form-group">
+            <input type="text" name=" SearchString" class="form-control" placeholder=" Enter Ward ID" />
+        </div>
+        <button type="submit" value=" Search" class=" btn btn-primary"> Search</button>
+    </form>*@
+    <p>
+        @*<a asp-action="Create">Create New</a>*@
+        @*<a style=" float:right" asp-action="Create" class=" btn btn-primary">Create New</a>*@
+        <link href=" https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel=" stylesheet " />
+    </p>
+
+    <table class="table">
+
+        <thead style=" background-color:dimgray;color:white">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.wardno)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.date)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.status)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NoOfBed)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody style="background-color :cornflowerblue;font-family:'Cambria Math'">
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.wardno)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.date)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.status)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NoOfBed)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" class="btn btn-default btn-sm"  style=" margin-right :5px" asp-route-id="@item.Id"><i class="fa fa-pencil "></i> Edit</a>
+                        <a asp-action="Details" style="color:darkblue" asp-route-id="@item.Id">Details</a>
+                        <a asp-action="Delete" class="btn btn-danger btn-sm"  style=" margin-left:5px" asp-route-id="@item.Id"><i class="fa fa-trash "></i> Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div>
+            <a asp-action="Index" style=" color :black">Back to List</a>
+        </div>
+</body>

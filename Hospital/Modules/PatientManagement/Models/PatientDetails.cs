@@ -30,7 +30,6 @@ namespace Hospital.Modules.PatientManagement.Models
 
         [DisplayName("Check In Date")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
         public DateTime Date_Cin { get; set; }
 
         [DisplayName("Phone Number")]
@@ -40,6 +39,13 @@ namespace Hospital.Modules.PatientManagement.Models
         [DisplayName("Address")]
         public string Address { get; set; }
 
+        [DisplayName("Availabilty")]
+        [DefaultValue("checked_IN")]
+        public string avalablity { get; set; }
+
+        [DisplayName("checked out date")]
+        [DataType(DataType.Date)]
+        public DateTime checkedout { get; set; }
       
     }
 

@@ -1,0 +1,101 @@
+﻿@model IEnumerable<Hospital.Modules.DrugDetails.Models.Drug>
+
+@{
+    ViewData["Title"] = "DrugSelling";
+}
+<style>
+    .modify {
+        margin-bottom: 10px;
+    }
+</style>
+
+<body style="background-color:lightslategray;">
+    <h1 style="color:aliceblue;padding-left:15px;padding-bottom:10px"> Drug Selling</h1>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-8">
+                <div class="modify">
+                    <form class="form-inline" asp-controller="Drugs" asp-action="SellingSearch">
+                        <div class="form-group">
+                            <input type="text" name="search" class="form-control" placeholder="Enter Drug Name">
+                        </div>
+                        <button type="submit" value="Search" class="btn btn-primary">Search</button>
+
+                    </form>
+                </div>
+
+                <table class="table table-dark">
+                    <thead class="alert-info">
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Drug_ID)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Name)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Description)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Qty)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Price)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.State)
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody style="background-color:cornflowerblue;font-family:'Cambria Math'">
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Drug_ID)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Description)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Qty)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Price)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.State)
+                                </td>
+                                <td>
+
+                                    <a asp-action="Details" asp-route-id="@item.ID" style="color:darkblue">Details</a> |
+
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-sm-4" style="background-color:dodgerblue;padding-bottom:10px;padding-top:10px">
+
+                <form>
+                    <div class="form-group">
+                        <label for="drg">Enter Drug ID:</label>
+                        <input type="text" class="form-control" id="drg">
+                    </div>
+                    <div class="form-group">
+                        <label for="amt">Amount:</label>
+                        <input type="number" class="form-control" id="amt">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Calculate</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</body>
+

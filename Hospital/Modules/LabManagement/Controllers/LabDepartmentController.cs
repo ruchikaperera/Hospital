@@ -38,7 +38,11 @@ namespace Hospital.Modules.LabManagement.Controllers
         // GET: LabDepartment
         public async Task<IActionResult> Index()
         {
-            return View(await _context.LabReportRequest.ToListAsync());
+            var req = from s in _context.LabReportRequest
+                      orderby s.ReportId descending
+                      select s;
+            //  await  Update_Report_Count();
+            return View(await req.ToListAsync());
         }
 
         // GET: LabDepartment/Details/5
@@ -102,7 +106,7 @@ namespace Hospital.Modules.LabManagement.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,nicNo,patientName,DoctorName,LabStatus,LabType,DoctorStatus,LabReport,date,labNo,SpecialistName,description")] LabReportRequest labReportRequest)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,ReportId, nicNo,patientName,DoctorName,LabStatus,LabType,DoctorStatus,LabReport,date,labNo,SpecialistName,description")] LabReportRequest labReportRequest)
         {
             // make the report ready
             labReportRequest.LabStatus = "Ready";
@@ -170,6 +174,44 @@ namespace Hospital.Modules.LabManagement.Controllers
         //{
         //    return _context.LabReportRequest.Any(e => e.Id == id);
         //}
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<int> Update_Report_Count()
+        {
+            ReportCount reportCount = new ReportCount();
+            
+           // var Model = await _context.ReportCount.SingleOrDefaultAsync(m => m.Id == id);
+
+            // get the row count of ReportCount table
+
+
+            // increment by one 
+            reportCount.Count = 0; 
+
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(reportCount);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!ReportCountExists(reportCount.Id))
+                    {
+                        // return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+
+            }
+            return reportCount.Count;
+        }
 
 
 

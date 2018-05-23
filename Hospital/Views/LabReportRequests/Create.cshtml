@@ -56,27 +56,22 @@
                 }
             }
 
-                 function ValidationPatientName() {
+            function ValidationPatientName() {
 
-                        var patientName = document.getElementById("patientName").value;
-
-
-                        if (patientName.length >0) {
-                            document.getElementById("patientName").innerHTML = "Invalid Patient Number";
-                        }
-                        else {
-                            document.getElementById("patientName").innerHTML = "";
-                        }
+                var patientName = document.getElementById("patientName").value;
 
 
+                if (patientName.length > 0) {
+                    document.getElementById("patientName").innerHTML = "Invalid Patient Number";
+                }
+                else {
+                    document.getElementById("patientName").innerHTML = "";
+                }
             }
 
+
                  function callMethod() {
-                     alert("a");
-
-                     
-                     <button  class="w3-button w3-blue w3-button-small">Search</button>
-
+                     swal("Invalid !", "Invalid Patient ID", "warning");
 
                  }
         </script>
@@ -91,7 +86,7 @@
 
                 <div class="w3-card-4" style="width:100%;">
                     <header class="w3-container w3-blue">
-                        <h4>Create New Lab Reports</h4>
+                       
                     </header>
 
                     <div class="w3-container">
@@ -189,15 +184,12 @@
 
                             </div>
 
-                            <button onclick="javascript:callMethod();" class="w3-button w3-blue w3-button-small">Search</button>
                             <div class="w3-row ex1 ">
                                 <div class="w3-col m1   ">
-                                    <input type="submit" value="Send Report" class="btn btn-primary" />
+                                    <input type="submit" value="Send Report" onclick="javascript:callMethod();" class="btn btn-primary" />
                                 </div>
-                                <div class="w3-col m1 ex2 ">
-                                    <form asp-action="Index">
-                                        <input type="submit" onclick="javascript:callWebApi();" value="Clear" class="btn btn-success" />
-                                    </form>
+                                <div class="w3-col m1 ex2 ">                                    
+                                        <input type="reset"  value="Clear" class="btn btn-success" />                                  
                                 </div>
 
                             </div>

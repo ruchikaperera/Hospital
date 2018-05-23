@@ -1,0 +1,61 @@
+﻿@model Hospital.Modules.DrugDetails.Models.Drug
+
+@{
+    ViewData["Title"] = "Details";
+}
+<style type="text/css">
+   
+</style>
+
+
+<body style="background-color:darkgray">
+    <div class="row">
+
+            <h2 style="font-family:'Times New Roman', Times, serif">Drug Details</h2>
+        <hr style="color:#fff;border-color:black;height:2px;" />
+
+            <dl class="dl-horizontal" style="font-size:medium">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Drug_ID)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Drug_ID)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Name)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Name)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Description)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Description)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Qty)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Qty)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Price)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Price)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.State)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.State)
+                </dd>
+            </dl>
+            <div>
+                <a asp-action="Edit" asp-route-id="@Model.ID" class="btn btn-primary">Edit</a> 
+                <a asp-action="Index" class="btn btn-primary"> << Back</a>
+            </div>
+       
+    </div>
+</body>

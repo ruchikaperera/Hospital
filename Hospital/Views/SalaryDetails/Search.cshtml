@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Hospital.Modules.SalaryDetails.Model.SalaryDetail>
+
+@{
+    ViewData["Title"] = "Salary Detail";
+}
+
+<h1>Salary Details</h1>
+<form asp-controller="SalaryDetails" asp-action="Search">
+    <p>
+        Name: <input type="text" name="SearchString">
+        <input type="submit" value="Search" />
+    </p>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NIC)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WorkingHrs)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rating)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NIC)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WorkingHrs)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Rating)
+                </td>
+                <td>
+
+                    <a asp-action="Details" asp-route-id="@item.ID">Details</a>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

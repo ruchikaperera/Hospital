@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Hospital.Modules.InvoiceDetails.Models.Invoice>
+
+@{
+    Layout = "~/Views/Invoices/_InvoiceLayout.cshtml";
+}
+<br />
+<p>
+    @using (Html.BeginForm())
+    {
+        @Html.TextBox("search") <button class="btn btn-primary">Search</button>
+
+    }
+</p>
+<br />
+<table class="table">
+    <thead style="background-color:dimgray;color:white">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PatienID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Total_Amount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pay_type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody style="background-color:cornflowerblue;font-family:'Cambria Math'">
+        @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PatienID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Total_Amount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pay_type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                <a asp-action="Edit" style="color:darkblue" asp-route-id="@item.InvoiceID">Edit</a> |
+                <a asp-action="Details" style="color:darkblue" asp-route-id="@item.InvoiceID">Details</a> |
+                <a asp-action="Delete" style="color:darkblue" asp-route-id="@item.InvoiceID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

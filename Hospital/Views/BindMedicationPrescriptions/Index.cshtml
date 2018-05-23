@@ -1,0 +1,72 @@
+﻿@model IEnumerable<Hospital.Modules.Prescriptions.Models.BindMedicationPrescription>
+
+@{
+    Layout = "~/Views/BindMedicationPrescriptions/_medicationpriscription.cshtml";
+}
+
+<br />
+<p>
+    @using (Html.BeginForm())
+    {
+        @Html.TextBox("search") <button class="btn btn-primary">Search</button>
+
+    }
+</p>
+<br />
+<body style="background-color:lightslategray">
+    <table class="table">
+        <thead style="background-color:dimgray;color:white">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.PID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Treatment)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Case_history)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Note)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.medication)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.When_to_take)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody style="background-color:cornflowerblue;font-family:'Cambria Math'">
+            @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Treatment)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Case_history)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Note)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.medication)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.When_to_take)
+                </td>
+                <td>
+                    <a asp-action="Edit" style="color:darkblue" asp-route-id="@item.ID">Edit</a> |
+                    <a asp-action="Details" style="color:darkblue" asp-route-id="@item.ID">Details</a> |
+                    <a asp-action="Delete" style="color:darkblue" asp-route-id="@item.ID">Delete</a>
+                </td>
+            </tr>
+    }
+        </tbody>
+    </table>
+</body>

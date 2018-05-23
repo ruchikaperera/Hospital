@@ -1,0 +1,203 @@
+﻿@model Hospital.Modules.Doctors_Profile.Models.LabReportRequest
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <style>
+        p.ex1 {
+            border: 1px solid red;
+            padding-left: 1em;
+        }
+    </style>
+    <meta name="viewport" content="width=device-width" />
+    <title>SearchPatient</title>
+    <script>
+
+        function DisableButton() {
+
+            var param = document.getElementById("usr").value;
+            if (param.length < 4) {
+                document.getElementById("btn").disabled = true;
+            }
+            else {
+                document.getElementById("btn").disabled = false;
+            }
+
+
+        }
+
+        function callWebApi() {
+
+
+            var param = document.getElementById("usr").value;
+            if (param.length < 4) {
+                swal("Invalid !", "Enter a valid patient ID", "warning");
+
+                document.getElementById("btn").disabled = true;
+            }
+            else {
+                document.getElementById("btn").disabled = false;
+            }
+
+            document.getElementById('Id').innerHTML = "Invalid ID";
+            document.getElementById('nic').innerHTML = "";
+            document.getElementById('patientName').innerHTML = "";
+            document.getElementById('LabStatus').innerHTML = "";
+            document.getElementById('DoctorStatus').innerHTML = "";
+            document.getElementById('LabReport').innerHTML = "";
+            document.getElementById('date').innerHTML = "";
+            document.getElementById('SpecialistName').innerHTML = "";
+            document.getElementById('description').innerHTML = "";
+            if (param.length =0) {
+                // alertify.alert("aaaa");
+                swal("Invalid !", "Invalid Patient ID", "warning");
+            }
+            else {
+                $.get("http://localhost:50730/DoctorsProfile/SearchLab", { id: param })
+                    .done(function (data) {
+
+                        document.getElementById('Id').innerHTML = data.reportId
+                        document.getElementById('nic').innerHTML = data.nicNo;
+                        document.getElementById('patientName').innerHTML = data.patientName;
+                        document.getElementById('LabStatus').innerHTML = data.labStatus;
+                        document.getElementById('DoctorStatus').innerHTML = data.doctorStatus;
+                        document.getElementById('LabReport').innerHTML = data.labReport;
+                        document.getElementById('date').innerHTML = data.date;
+                        document.getElementById('SpecialistName').innerHTML = data.SpecialistName;
+                        document.getElementById('description').innerHTML = data.description;
+                    })              
+            }
+
+          
+                
+           // swal("Success", "New Student Was Created", "success");
+
+        }
+
+
+
+
+
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+    <div>
+        <div class="w3-row">
+            <div class="w3-col m3 w3-padding-large ">
+                    
+                
+                    @*oninput="javascript:callWebApi();"*@
+                    <input type="text" oninput="DisableButton()" placeholder="Enter Patient ID..." class="form-control" id="usr">
+                            
+            </div>
+            <div class="w3-col m4 w3-left w3-padding-large">
+              
+
+                    <button onclick="javascript:callWebApi();" id="btn" class="w3-button w3-blue w3-button-small">Search</button>
+                    
+            </div>
+        </div>
+        <div class="w3-row">
+            <div class="w3-col w3-left m2  w3-padding-small ">
+                <p>ID :</p>
+            </div>
+            <div class="w3-col m2 w3-left w3-padding-small ">
+                <p id="Id"></p>
+            </div>
+
+
+
+            <div class="w3-col m2 w3-left w3-padding-small">
+                <p>Nic Number :</p>
+            </div>
+            <div class="w3-col m2 w3-left  w3-padding-small">
+                <p id="nic"></p>
+            </div>
+
+
+            <div class="w3-col w3-left m2  w3-padding-small ">
+                <p>Patient Name :</p>
+            </div>
+            <div class="w3-col m2 w3-left w3-padding-small ">
+                <p id="patientName"></p>
+            </div>
+
+        </div>
+
+
+        <div class="w3-row">
+
+
+            <div class="w3-col w3-left m2  w3-padding-small ">
+                <p>LabStatus :</p>
+            </div>
+            <div class="w3-col m2 w3-left w3-padding-small ">
+                <p id="LabStatus"></p>
+            </div>
+
+
+
+            <div class="w3-col m2 w3-left w3-padding-small">
+                <p>DoctorStatus :</p>
+            </div>
+            <div class="w3-col m2 w3-left  w3-padding-small">
+                <p id="DoctorStatus"></p>
+            </div>
+
+
+            <div class="w3-col w3-left m2  w3-padding-small ">
+                <p>LabReport :</p>
+            </div>
+            <div class="w3-col m2 w3-left w3-padding-small ">
+                <p id="LabReport"></p>
+            </div>
+
+        </div>
+
+
+        <div class="w3-row">
+
+
+            <div class="w3-col w3-left m2  w3-padding-small ">
+                <p>Date :</p>
+            </div>
+            <div class="w3-col m2 w3-left w3-padding-small ">
+                <p id="date"></p>
+            </div>
+
+
+            <div class="w3-col w3-left m2  w3-padding-small ">
+                <p>SpecialistName :</p>
+            </div>
+            <div class="w3-col m2 w3-left w3-padding-small ">
+                <p id="SpecialistName"></p>
+            </div>
+
+            <div class="w3-col m2 w3-left w3-padding-small">
+                <p>description :</p>
+            </div>
+            <div class="w3-col m2 w3-left  w3-padding-small">
+                <p id="description"></p>
+            </div>
+
+        </div>
+
+
+
+
+    </div>
+       
+         
+       
+</body>
+</html>

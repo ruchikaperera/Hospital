@@ -1,0 +1,110 @@
+﻿@model Hospital.Modules.Prescriptions.Models.BindMedicationPrescription
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content" style="background-color:lightslategray">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <center><h3 class="modal-title"><b style="color:darkcyan">Prescription Details</b></h3></center>
+            </div>
+            <div class="modal-body">
+                <p>
+                    <dl class="dl-horizontal">
+                       
+                            <dt>
+                                @Html.DisplayNameFor(modelItem => modelItem.PID)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(modelItem => modelItem.PID)
+                            </dd>
+                            <dt>
+                                @Html.DisplayNameFor(modelItem => modelItem.Treatment)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(modelItem => modelItem.Treatment)
+                            </dd>
+                    </dl>
+                    <table class="table">
+                        <thead style="background-color:dimgray;color:white">
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(modelItem => modelItem.Case_history)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.medication)
+                                </th>
+
+                                <th>
+                                    @Html.DisplayNameFor(model => model.When_to_take)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(modelItem => modelItem.Note)
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody style="background-color:cornflowerblue;font-family:'Cambria Math'">
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => modelItem.Case_history)
+                                </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem =>modelItem.medication)
+                                    </td>
+
+                                    <td>
+                                        @Html.DisplayFor(modelItem => modelItem.When_to_take)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => modelItem.Note)
+                                    </td>
+                                </tr>
+                          
+                        </tbody>
+                    </table>
+
+                </p>
+            </div>
+            <div class="modal-footer">
+                <form asp-action="Index">
+                    <input type="hidden" asp-for="ID" />
+                    <button type="submit" class="btn btn-primary">Close</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

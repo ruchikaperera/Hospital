@@ -83,13 +83,18 @@
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <input type="hidden" asp-for="Id" />
                 <div class="form-group">
+                    <label asp-for="ReportId" class="control-label"></label>
+                    <input asp-for="ReportId" ReadOnly="readonly" class="form-control" />
+                    <span asp-validation-for="ReportId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
                     <label asp-for="nicNo" class="control-label"></label>
-                    <input asp-for="nicNo" class="form-control" />
+                    <input asp-for="nicNo" ReadOnly="readonly" class="form-control" />
                     <span asp-validation-for="nicNo" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="patientName" class="control-label"></label>
-                    <input asp-for="patientName" class="form-control" />
+                    <input asp-for="patientName" ReadOnly="readonly" class="form-control" />
                     <span asp-validation-for="patientName" class="text-danger"></span>
                 </div>
                 <div class="form-group">
@@ -104,12 +109,12 @@
                 </div>
                 <div class="form-group">
                     <label asp-for="LabType" class="control-label"></label>
-                    <input asp-for="LabType" class="form-control" />
+                    <input asp-for="LabType" ReadOnly="readonly" class="form-control" />
                     <span asp-validation-for="LabType" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="DoctorStatus" class="control-label"></label>
-                    <input asp-for="DoctorStatus" class="form-control" />
+                    <input asp-for="DoctorStatus" ReadOnly="readonly" class="form-control" />
                     <span asp-validation-for="DoctorStatus" class="text-danger"></span>
                 </div>
                 <div class="form-group">
@@ -120,22 +125,22 @@
                 <div class="form-group">
                     <label asp-for="labNo" class="control-label"></label>
                     <input asp-for="labNo" class="form-control" />
-                    <span asp-validation-for="labNo" class="text-danger"></span>
+                    <span asp-validation-for="labNo" ReadOnly="readonly" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="SpecialistName" class="control-label"></label>
                     <input asp-for="SpecialistName" class="form-control" />
-                    <span asp-validation-for="SpecialistName" class="text-danger"></span>
+                    <span asp-validation-for="SpecialistName" ReadOnly="readonly" class="text-danger"></span>
                 </div>
 
                 <div class="form-group">
                     <label asp-for="LabReport" class="control-label"></label>
-                    <input asp-for="LabReport" value="Pending" ReadOnly="readonly" class="form-control" />
+                    <input asp-for="LabReport" class="form-control" />
                     <span asp-validation-for="LabReport" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="description" class="control-label"></label>
-                    <input asp-for="description" class="form-control" />
+                    <input asp-for="description" ReadOnly="readonly" class="form-control" />
                     <span asp-validation-for="description" class="text-danger"></span>
                 </div>
                 <div class="form-group">

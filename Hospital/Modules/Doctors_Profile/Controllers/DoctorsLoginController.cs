@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Hospital.Models;
 using Hospital.Modules.Doctors_Profile.Models;
+using Hospital.Modules.PatientManagement.Models;
 
 namespace Hospital.Modules.Doctors_Profile.Controllers
 {
@@ -19,26 +20,40 @@ namespace Hospital.Modules.Doctors_Profile.Controllers
         {
             _context = context;
         }
-        //public Task<int> SearchPatient(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //       // return NotFound();
-        //    }
+        public async Task<IActionResult> LogIn(string username, string password)
+        {
+           
 
-        //    var patientModel = _context.patient
-        //       .SingleOrDefaultAsync(m => m.Id == id);
-        //    if (patientModel == null)
-        //    {
-        //      //  return NotFound();
-        //    }
+            var doctorsLoginModel = await _context.DoctorsLoginModel
+                .SingleOrDefaultAsync(m => (m.userName == username)&&(m.password == password));
+            if (doctorsLoginModel == null)
+            {
+                return NotFound();
+            }
 
-        //    string username = "";
-        //    username = "Ruchika Perera";
-        //    ViewBag.username = username;
-        //   // return View("zz");
-        //   // return 2;
-        //}
+            return View(doctorsLoginModel);
+        }
+        public async Task<PatientDetails> SearchPatient(int? id)
+        {
+
+            PatientDetails patientDetails = new PatientDetails();
+            if (id == null)
+            {
+                // return NotFound();
+            }
+
+             patientDetails = await _context.PatientDetails
+               .SingleOrDefaultAsync(m => m.Id == id);
+            if (patientDetails == null)
+            {
+                //  return NotFound();
+            }
+
+            string username = "";
+            username = "Ruchika Perera";
+            ViewBag.username = username;
+             return patientDetails;
+        }
 
 
         // GET: DoctorsLogin
@@ -70,7 +85,7 @@ namespace Hospital.Modules.Doctors_Profile.Controllers
 
             return View(doctorsLoginModel);
         }
-        public async Task<LabReportRequest> SearchPatient(int? id)
+        public async Task<LabReportRequest> SearchLab(int? id)
         {
             LabReportRequest labReportRequest = new LabReportRequest();
           
@@ -82,10 +97,10 @@ namespace Hospital.Modules.Doctors_Profile.Controllers
             ViewBag.a = 30;
 
              labReportRequest = await _context.LabReportRequest
-                .SingleOrDefaultAsync(m => m.nicNo == id);
+                .SingleOrDefaultAsync(m => m.ReportId == id);
             if (labReportRequest == null)
             {
-               // return NotFound();
+               
             }
 
 

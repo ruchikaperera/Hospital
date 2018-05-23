@@ -20,8 +20,12 @@ namespace Hospital.Modules.PatientManagement.Controllers
         }
 
         // GET: PatientDetails
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(String search)
         {
+            if (search != null)
+            {
+                return View(_context.PatientDetails.Where(i => i.NicNo == search));
+            }
             return View(await _context.PatientDetails.ToListAsync());
         }
 
@@ -55,7 +59,7 @@ namespace Hospital.Modules.PatientManagement.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,patientName,NicNo,Email,Wardno,Date_Cin,telephone,Address")] PatientDetails patientDetails)
+        public async Task<IActionResult> Create([Bind("Id,patientName,NicNo,Email,Wardno,Date_Cin,telephone,Address,avalablity")] PatientDetails patientDetails)
         {
             if (ModelState.IsValid)
             {
@@ -87,7 +91,7 @@ namespace Hospital.Modules.PatientManagement.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,patientName,NicNo,Email,Wardno,Date_Cin,telephone,Address")] PatientDetails patientDetails)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,patientName,NicNo,Email,Wardno,Date_Cin,telephone,Address,avalablity")] PatientDetails patientDetails)
         {
             if (id != patientDetails.Id)
             {
@@ -153,6 +157,18 @@ namespace Hospital.Modules.PatientManagement.Controllers
         public IActionResult Login()
         {
             return View();
+        }
+        public async Task<IActionResult> Searchpatient(string Nic)
+        {
+            var allDetails = from patient in _context.PatientDetails select patient;
+
+            if (!String.IsNullOrEmpty(Nic))
+            {
+                allDetails = allDetails.Where(pname => pname.NicNo.Contains(Nic));
+            }
+
+
+            return View(await allDetails.ToListAsync());
         }
     }
 }

@@ -1,0 +1,47 @@
+﻿@model Hospital.Modules.Wardassign.Models.Ward
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<body  style="background-color:lightslategray;"> 
+<h2>Ward Assign Form</h2>
+
+<h4>Details</h4>
+<hr />
+<div class="row" >
+    <div class="col-md-6 col-md-offset-3 well">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="wardNo" class="control-label"></label>
+                <input asp-for="wardNo" class="form-control" />
+                <span asp-validation-for="wardNo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="empno" class="control-label"></label>
+                <input asp-for="empno" class="form-control" />
+                <span asp-validation-for="empno" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="dateDutyOn" class="control-label"></label>
+                <input asp-for="dateDutyOn" class="form-control" />
+                <span asp-validation-for="dateDutyOn" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="timeDutyOn" class="control-label"></label>
+                <input asp-for="timeDutyOn" class="form-control" />
+                <span asp-validation-for="timeDutyOn" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" class="btn btn-primary">Back to List</a>
+</div>
+
+    </body>

@@ -1,0 +1,57 @@
+﻿@model Hospital.Modules.Prescriptions.Models.BindMedicationPrescription
+
+@{
+    Layout = "~/Views/BindMedicationPrescriptions/_medicationpriscription.cshtml";
+}
+
+<hr />
+<div class="row" style="background-color:whitesmoke;width:450px;height:600px;margin: auto;align-content:center">
+    <div class="col-md-12">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ID" />
+            <br /><br />
+            <div class="form-group">
+                <label asp-for="PID" class="control-label"></label>
+                <input asp-for="PID" class="form-control" />
+                <span asp-validation-for="PID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Treatment" class="control-label"></label>
+                <input asp-for="Treatment" class="form-control" />
+                <span asp-validation-for="Treatment" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Case_history" class="control-label"></label>
+                <input asp-for="Case_history" class="form-control" />
+                <span asp-validation-for="Case_history" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Note" class="control-label"></label>
+                <input asp-for="Note" class="form-control" />
+                <span asp-validation-for="Note" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="medication" class="control-label"></label>
+                <input asp-for="medication" class="form-control" />
+                <span asp-validation-for="medication" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="When_to_take" class="control-label"></label>
+                <input asp-for="When_to_take" class="form-control" />
+                <span asp-validation-for="When_to_take" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

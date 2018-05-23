@@ -4,29 +4,163 @@
 }
 
 <!DOCTYPE html>
-<html lang="en">
+
+@*</body>
+</html>*@
+
+<html>
 <head>
-    <title>Bootstrap Example</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdn.rawgit.com/alertifyjs/alertify.js/v1.0.10/dist/js/alertify.js"></script>
+
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <style>
+        body {
+            font-family: "Lato", sans-serif;
+        }
+
+        .sidenav {
+            height: 100%;
+            width: 0%;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #111;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+        }
+
+            .sidenav a {
+                padding: 8px 8px 8px 32px;
+                text-decoration: none;
+                font-size: 25px;
+                color: #ff6a00;
+                display: block;
+                transition: 0.3s;
+            }
+
+                .sidenav a:hover {
+                    color: #ff6a00;
+                }
+
+            .sidenav .closebtn {
+                position: absolute;
+                top: 0;
+                right: 55px;
+                font-size: 36px;
+                margin-left: 50px;
+            }
+    </style>
+    <script>
+        function callWebApi() {
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+            var param = 3;
+
+            $.get("http://localhost:50730/DoctorsProfile/SearchPatient", { id: param })
+                .done(function (data) {
+
+                    // document.getElementById('labNo').innerHTML = data.labNo;
+                    //document.getElementById('SpecialistName').innerHTML = data.SpecialistName;
+                    //document.getElementById('description').innerHTML = data.description;
+                });
+        }
+
+    </script>
 </head>
 <body>
 
+    <div class="container; align-content-center ; border-top">
+
     <div class="container">
-        <h2>Button Styles</h2>
+      
         <form asp-action="http://localhost:50730/">
-            <a href="http://localhost:50730/DoctorsProfile/Index" class="btn btn-info" role="button">Doctors Profile</a>
-            <a href="http://localhost:50730/LabDepartment/HomePage" class="btn btn-info" role="button">Lab Department</a>
+            <a href="http://localhost:50730/DoctorsProfile/Index" class="btn btn-success" role="button">Doctors Profile</a>
+            <a href="http://localhost:50730/LabDepartment/HomePage" class="btn btn-success" role="button">Lab Department</a>
+            <a href="http://localhost:50730/PatientDetails/Login" class="btn btn-success" role="button">Patients</a>
+            <a href="http://localhost:50730/Wards/Login" class="btn btn-success" role="button">Wards</a>
+            <a href="http://localhost:50730/Drugs" class="btn btn-success" role="button">Drug Department</a>
+            <a href="http://localhost:50730/Drugs/DrugSelling" class="btn btn-success" role="button">Pharmacy</a>
+            <a href="http://localhost:50730/SalaryDetails" class="btn btn-success" role="button">Salary Details</a>
+            <a href="http://localhost:50730/BindMedicationPrescriptions/mainView" class="btn btn-success" role="button">Prescription Details</a>
+            <a href="http://localhost:50730/Invoices/mainView" class="btn btn-success" role="button">Invoice Details</a>
+            <a href="http://localhost:50730/Staffdatas" class="btn btn-success" role="button">Staff Details</a>
+            <a href="http://localhost:50730/Warddatas" class="btn btn-success" role="button">Ward Details</a>
+
+
+
+
+
+
 
         </form>
 
     </div>
+    </div>
+
+    @*<div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="#">About</a>
+       
+    </div>
+
+    <div id="Doctor" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeDoctor()">&times;</a>
+        <a href="http://localhost:50730/DoctorsProfile/Index" class="btn btn-info" role="button">Doctors Profile</a>
+
+        <div class="container w3-blue pading-lg">
+            <form class="w3-container w3-blue">
+                <p>
+                    <label>User Name</label>
+                    <input class="w3-input" id="username" name="username" type="text">
+                </p>
+                <p>
+                    <label>Password</label>
+                    <input class="w3-input" id="password"  name="password" type="text">
+                </p>
+                <button class="w3-button w3-purple" input type="submit" onclick="javascript: callWebApi();">Log In</button>
+            </form>
+            @*<form asp-action="DoctorLogIn">
+                <button class="w3-button w3-purple">Log In</button>
+
+                <input type="submit" onclick="javascript: callWebApi();" value="Clear" class="btn btn-success" />
+            </form>*@
+        @*</div>
+
+    </div>
+
+    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
+    <span style="font-size:30px;cursor:pointer" onclick="openDoctor()">&#9776; Doctor</span>*@
     
 
+    <script>
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "1850px";
+        }
 
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+        }
+
+        function openDoctor() {
+            document.getElementById("Doctor").style.width = "1550px";
+        }
+
+        function closeDoctor() {
+            document.getElementById("Doctor").style.width = "0";
+        }
+    </script>
 
 </body>
 </html>
+

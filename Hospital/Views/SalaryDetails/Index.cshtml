@@ -1,0 +1,69 @@
+﻿@model IEnumerable<Hospital.Modules.SalaryDetails.Model.SalaryDetail>
+
+@{
+    ViewData["Title"] = "Salary Details";
+}
+<style>
+    .m1 {
+        float: right;
+        font-family: 'Times New Roman', Times, serif;
+        font-size: large;
+    }
+
+    .m2 {
+        margin-top: 30px;
+        margin-bottom: 10px;
+    }
+</style>
+<body style="background-color:darkgrey">
+
+    <h2 style="font-family:'Times New Roman', Times, serif">Salary Details</h2>
+
+    <p class="m1">
+        <a asp-action="Create" style="color:darkblue">Add New Salary Record</a>
+    </p>
+
+    <table class="table">
+        <thead style="background-color:dimgray;color:white;">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.NIC)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.WorkingHrs)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Rating)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody style="background-color:cornflowerblue;font-family:'Cambria Math';">
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NIC)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.WorkingHrs)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Rating)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" style="color:darkblue;" asp-route-id="@item.ID">Edit</a> |
+                        <a asp-action="Details" style="color:darkblue;" asp-route-id="@item.ID">Details</a> |
+                        <a asp-action="Delete" style="color:darkblue;" asp-route-id="@item.ID">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>

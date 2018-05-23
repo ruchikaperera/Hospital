@@ -1,0 +1,56 @@
+﻿@model Hospital.Modules.Wardddata.Models.Warddatas
+
+@{
+    ViewData["Title"] = "Create";
+}
+<body style=" background-color:lightslategray">
+    <h2>Add Ward Details</h2>
+
+    @*<h4>Warddatas</h4>*@
+    <hr />
+    <div class="row" >
+        <div class="col-md-4">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="wardno" class="control-label"></label>
+                    <input asp-for="wardno" placeholder=" Enter Ward No" class="form-control" />
+                    <span asp-validation-for="wardno" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="date" class="control-label"></label>
+                    <input asp-for="date" placeholder=" YYYY-MM-DD" class="form-control" />
+                    <span asp-validation-for="date" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="description" class="control-label"></label>
+                    <input asp-for="description" placeholder=" Enter description" class="form-control" />
+                    <span asp-validation-for="description" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="status" class="control-label"></label>
+                    <input asp-for="status" placeholder=" Availability" class="form-control" />
+                    <span asp-validation-for="status" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="NoOfBed" class="control-label"></label>
+                    <input asp-for="NoOfBed" placeholder=" Enter No of Beds" class="form-control" />
+                    <span asp-validation-for="NoOfBed" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Submit" class="btn btn-primary" />
+                    <a asp-action="Index" class=" btn btn-primary"><b><<< </b>Back</a>
+                    <input type="reset" value="Reset" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    @*<div>
+        <a asp-action="Index">Back to List</a>
+    </div>*@
+</body>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

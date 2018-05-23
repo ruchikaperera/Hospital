@@ -1,0 +1,44 @@
+﻿@model Hospital.Modules.Wardassign.Models.Ward
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<body style="background-color:lightslategray">
+    <h2>Ward Details</h2>
+
+    <div>
+      
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.wardNo)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.wardNo)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.empno)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.empno)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.dateDutyOn)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.dateDutyOn)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.timeDutyOn)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.timeDutyOn)
+            </dd>
+        </dl>
+    </div>
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model.Id" style="color:white;" class="btn btn-primary">Edit</a> 
+        <a asp-action="Index" style="color:white;" class="btn btn-primary">Back to List</a>
+    </div>
+    </body>
